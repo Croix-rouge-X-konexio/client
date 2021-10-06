@@ -37,7 +37,9 @@ export default function Login() {
             <form onSubmit={submit}>
                 <input className="login-input" type="email" id="email" placeholder="Email" onChange={e => setEmail(e.target.value)} required />
                 <input className="login-input" type="password" id="password" placeholder="Mot de passe" onChange={e => setPassword(e.target.value)} required />
-                <input type="submit" value="Login" className="login-button" />
+                <Link to="/home">
+                <button type="submit" className="login-button" >Se connecter</button>
+                </Link>
             </form>
             <Link to="/register">
                 <button>Créez votre compte</button>

@@ -1,0 +1,62 @@
+.post-event {
+    margin-top: 50px;
+    width: 100%;
+    height: 500px;
+    border: solid 1px rgb(197, 197, 197);
+    background-color: rgba(255, 255, 255);
+    color: grey;
+    border-radius: 10px;
+    padding: 50px;
+}
+
+.post-event-header-detail {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-event-header-title {
+    font-size: 2rem;
+}
+
+.post-event-description {
+    margin-top: 50px;
+}
+
+.post-event-buttons {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 220px;
+}
+
+.post-event-buttons button {
+    padding: 10px;
+}
+
+.post-event-options {
+    margin-right: 20px;
+    background-color: rgba(128, 128, 128, 0.5);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.post-event-options:hover {
+    background-color: rgba(128, 128, 128);
+}
+
+.interested {
+    background-color: rgb(118, 166, 255);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.interested:hover {
+    background-color: rgba(55, 102, 255);
+}

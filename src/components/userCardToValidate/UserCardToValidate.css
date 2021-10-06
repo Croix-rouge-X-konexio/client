@@ -1,0 +1,50 @@
+.userCardToValidate {
+    margin-top: 50px;
+    width: 100%;
+    height: 300px;
+    border: solid 1px rgb(197, 197, 197);
+    background-color: white;
+    color: grey;
+    border-radius: 10px;
+    padding: 50px;
+}
+
+.userCardToValidate-userInfo {
+    display: flex;
+
+}
+
+.userCardToValidate-userInfo-picture {
+    width: 150px;
+    height: 150px;
+    border: solid 1px rgb(197, 197, 197);
+    border-radius: 100px;
+}
+
+.userCardToValidate-userInfo-detail {
+    margin-left: 50px;
+    font-size: 1.5rem;
+}
+
+.userCardToValidate-button {
+    display: flex;
+    position: relative;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.userCardToValidate-button button {
+    padding: 10px;
+    background-color: rgba(83, 214, 57, 0.5);
+    width: 300px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+    font-size: 2rem;
+}
+
+.userCardToValidate-button button:hover {
+    background-color: rgb(83, 214, 57);
+}

@@ -4,7 +4,7 @@ import NavBar from '../../components/navbar/NavBar'
 import UserCardToValidate from '../../components/userCardToValidate/UserCardToValidate';
 
 
-
+import './AdminValidateUser.css'
 
 export default function AdminValidateUser () {
 
@@ -14,9 +14,15 @@ export default function AdminValidateUser () {
     }, []);
 
     return (
-        <div className="adminValidateUser">
+        <div>
             <NavBar />
-            <UserCardToValidate />
+            <div className="adminValidateUser">
+                <div className="adminValidateUser-users-list">
+                <UserCardToValidate />
+                </div>
+            </div>
+            
+            
         </div>
     );
 }

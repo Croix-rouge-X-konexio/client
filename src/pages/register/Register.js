@@ -30,7 +30,7 @@ export default function Register() {
             
     };
 
-    //on a besoin de ces states pour la vérification des champs obligatoires
+
 
     const [firstName, setFirstName] = useState()
     const [lastName, setLastName] = useState()
@@ -58,7 +58,7 @@ export default function Register() {
 
     useEffect(() => {
         
-        if(password.length > 6) {
+        if(password.length > 7) {
             setPasswordChecked(true)
         } else {
             setPasswordChecked(false)
@@ -115,10 +115,10 @@ export default function Register() {
 
                 <label>Statut*: </label>
                 <select name="category" id="category" onChange={e => setCategory(e.target.value)} required >
-                    <option value="statut1">Etudiant</option>
-                    <option value="statut2">Apprenti</option>
-                    <option value="statut3">Alumni étudiant</option>
-                    <option value="statut4">Alumni apprenti</option>
+                    <option value="Etudiant">Etudiant</option>
+                    <option value="Apprenti">Apprenti</option>
+                    <option value="Alumni étudiant">Alumni étudiant</option>
+                    <option value="Alumni apprenti">Alumni apprenti</option>
                 </select>
 
                 <label>Région*: </label>
@@ -139,16 +139,16 @@ export default function Register() {
 
                 <label>Formation*: </label>
                 <select name="education" id="education" onChange={e => setEducation(e.target.value)} required >
-                    <option value="formation1">formation1</option>
-                    <option value="formation2">formation2</option>
-                    <option value="formation3">formation3</option>
+                    <option value="Ambulancier">Ambulancier</option>
+                    <option value="Brancardier">Brancardier</option>
+                    <option value="Infirmier">Infirmier</option>
                 </select>
 
                 <label>Année de formation*: </label>
                 <select name="date" id="date" onChange={e => setDate(e.target.value)} required >
-                    <option value="formation1">formation1</option>
-                    <option value="formation2">formation2</option>
-                    <option value="formation3">formation3</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
                 </select>
 
                 {/* <label>Attestation de formation: </label>
@@ -162,7 +162,7 @@ export default function Register() {
                     <option value="2021">2021</option>
                     <option value="2020">2020</option>
                     <option value="2019">2019</option>
-                    <option value="">2018</option>
+                    <option value="2018">2018</option>
                 </select>
 
                 <label>Date de fin: </label>
@@ -174,7 +174,6 @@ export default function Register() {
                 </select>
 
                 <label>Mot de passe*: </label>
-                <input type="password" id="Mot de passe" onChange={e => setPassword(e.target.value)} required />
                 {passwordChecked ? 
                 (
                     <>
@@ -186,7 +185,7 @@ export default function Register() {
                     </>
                 )
                 }
-                <input type="password" placeholder="Confirmer mot de passe" onChange={e => setConfirmPassword(e.target.value)} required />
+                <input type="password" id="Mot de passe" onChange={e => setPassword(e.target.value)} required />
                 {confirmPasswordChecked ? 
                 (
                     <>
@@ -198,6 +197,8 @@ export default function Register() {
                     </>
                 )
                 }
+                <input type="password" placeholder="Confirmer mot de passe" onChange={e => setConfirmPassword(e.target.value)} required />
+                
                 {completedForm ? (
                     <>
                     <Link to="/waitingforvalidation">

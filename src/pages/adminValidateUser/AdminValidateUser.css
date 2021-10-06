@@ -1,0 +1,12 @@
+.adminValidateUser {
+    margin-top: 150px;
+    display: flex;
+    position: absolute;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.adminValidateUser-users-list {
+    width: 1000px;
+}

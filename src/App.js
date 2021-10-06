@@ -3,7 +3,6 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 import userContext from './context/userContext';
-
 import './App.css';
 
 import Home from './pages/home/Home';
@@ -75,12 +74,12 @@ export default function App() {
     <BrowserRouter>
       <Switch>
 
-        <RestrictedRoute exact path="/" component={Login} />
-        <RestrictedRoute exact path="/register" component={Register} />
-        <RestrictedRoute exact path="/waitingforvalidation" component={WaitingForValidation} />
-        <PrivateRoute exact path="/home" component={Home} />
-        <PrivateRoute exact path="/profile" component={Profile} />
-        <PrivateRoute exact path="/adminvalidateuser" component={AdminValidateUser} />
+        <Route exact path="/" component={Login} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/waitingforvalidation" component={WaitingForValidation} />
+        <Route exact path="/home" component={Home} />
+        <Route exact path="/profile" component={Profile} />
+        <Route exact path="/adminvalidateuser" component={AdminValidateUser} />
 
       </Switch>
     </BrowserRouter>

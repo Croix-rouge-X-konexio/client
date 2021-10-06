@@ -1,4 +1,27 @@
-.register form {
+.register {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.register form {
+    
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    width: 500px;
+    
+}
+
+.register form input{
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.register form select{
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
 }
