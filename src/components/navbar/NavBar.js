@@ -16,8 +16,8 @@ export default function NavBar() {
     // }
 
     return ( 
-        <withRouter>
-            <nav className="navbar">
+        
+        <nav className="navbar">
             {/* <NavLink className="nav-logo" to="/"><button>Croix Rouge</button></NavLink>
                 <div className="nav-links">
                     <NavLink exact to="/" activeClassName="active"><button className="nav-link"><i className="fas fa-home"></i></button></NavLink>
@@ -37,8 +37,8 @@ export default function NavBar() {
                 <div className="nav-buttons">
                     <button onClick={logout}>Se déconnecter</button>
                 </div> */}
-            </nav>
-        </withRouter>
+        </nav>
+        
         
     );
     

@@ -1,7 +1,7 @@
 import React, { useEffect, } from 'react';
 
 import NavBar from '../../components/navbar/NavBar'
-
+import Post from '../../components/post/PostEvent';
 
 import './Home.css'
 
@@ -34,6 +34,7 @@ export default function Home () {
 
             {/* show addEvent component */}
             {/* faire map de la liste des posts */}
+            <Post />
         </div>
     );
 }

@@ -35,8 +35,8 @@ export default function Login() {
     return ( 
         <div className="login">
             <form onSubmit={submit}>
-                <input className="login-input" type="email" id="email" placeholder="Email" onChange={e => setEmail(e.target.value)}/>
-                <input className="login-input" type="password" id="password" placeholder="Mot de passe" onChange={e => setPassword(e.target.value)}/>
+                <input className="login-input" type="email" id="email" placeholder="Email" onChange={e => setEmail(e.target.value)} required />
+                <input className="login-input" type="password" id="password" placeholder="Mot de passe" onChange={e => setPassword(e.target.value)} required />
                 <input type="submit" value="Login" className="login-button" />
             </form>
             <Link to="/register">
