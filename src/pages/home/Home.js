@@ -1,15 +1,13 @@
-import React, { useEffect, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-import UserContext from '../../../context/userContext';
+import React, { useEffect, } from 'react';
 
-import Post from ''
+import NavBar from '../../components/navbar/NavBar'
+
 
 import './Home.css'
 
 
 export default function Home () {
-    const {userData} = useContext(UserContext);
-    const history = useHistory();
+
 
     useEffect(() => {
         //faire l'appel au serveur pour récupérer la liste des posts
@@ -22,7 +20,7 @@ export default function Home () {
     return (
         <div className="home">
             <NavBar />
-            {userData.user.isAdmin ? (
+            {/* {userData.user.isAdmin ? (
                 <>  
                     <button className="create-post" onClick={handleCreatePost}>Créer un évenement</button>
                 </>
@@ -30,10 +28,10 @@ export default function Home () {
                 <>
                 
                 </>
-            )}
+            )} */}
             <button>Filtre</button>
             {/* expand filter on click */}
-            
+
             {/* show addEvent component */}
             {/* faire map de la liste des posts */}
         </div>

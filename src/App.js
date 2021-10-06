@@ -2,14 +2,13 @@ import React, {useState, useEffect, createContext } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 
-export default createContext(null);
+
 
 import './App.css';
 
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
-import Register from '/pages/register/Register';
-import NavBar from './components/navbar/NavBar';
+import Register from './pages/register/Register';
 
 
 
@@ -45,23 +44,15 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <UserContext.Provider value={{ userData, setUserData }}>
+     
         
-        <Switch>
+      <Switch>
 
-
+        <Route exact path="/" component={Login} />
+        <Route exact path="/register" component={Register} />
               
-              <Route exact path="/" component={Home} />
-              <Route exact path="/adminValidateUser" component={AdminValidateUser} />
-              <Route exact path="/profile" component={Profile} />
-
-
-              
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/waitingForValidation" component={WaitingForValiation} />
-
-        </Switch>
-      </UserContext.Provider>
+      </Switch>
+  
     </BrowserRouter>
   );
 }
