@@ -35,7 +35,7 @@
 
 .userCardToValidate-button button {
     padding: 10px;
-    background-color: rgba(83, 214, 57, 0.5);
+    margin: 20px;
     width: 300px;
     color: white;
     border: none;
@@ -45,6 +45,18 @@
     font-size: 2rem;
 }
 
-.userCardToValidate-button button:hover {
+.validate {
+    background-color: rgba(83, 214, 57, 0.5);
+}
+    
+.validate:hover {
     background-color: rgb(83, 214, 57);
+}
+
+.reject {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+    
+.reject:hover {
+    background-color: rgb(255, 0, 0);
 }

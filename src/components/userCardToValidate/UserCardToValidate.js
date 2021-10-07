@@ -31,7 +31,8 @@ export default function UserCardToValidate () {
                 </div>
             </div>
             <div className="userCardToValidate-button">
-                <button>Valider</button>
+                <button className="reject">Refuser</button>
+                <button className="validate">Valider</button>
             </div>
             
         </div>
