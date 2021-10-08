@@ -1,34 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 
 
 import './Register.css'
+// const history = useHistory();
+// history.push("/waitingForValidation");
+
 
 export default function Register() {
-
-    const submit = async () => {
-        // e.preventDefault();
-
-            const newUser = {
-                email: document.getElementById("email").value,
-                password: document.getElementById("password").value,
-                firstName: document.getElementById("firstName").value,
-                lastName: document.getElementById("lastName").value,
-                //picture: document.getElementById("email").value,
-                category: document.getElementById("category").value,
-                phoneNumber: document.getElementById("phoneNumber").value,
-                area: document.getElementById("area").value,
-                education: document.getElementById("education").value,
-                school: document.getElementById("school").value,
-                date: document.getElementById("date").value,
-                //doc: document.getElementById("email").value,
-                titleExperience: document.getElementById("titleExperience").value,
-                startingDate: document.getElementById("startingDate").value,
-                endingDate: document.getElementById("endingDate").value,
-            }
-            await axios.post("http://localhost:5000/users/register", newUser);
-            
+    const submit = (e) => {
+        e.preventDefault();
+        console.log("requête envoyée !");
+        const body = {
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value,
+            firstName: document.getElementById("firstName").value,
+            lastName: document.getElementById("lastName").value,
+            //picture: document.getElementById("email").value,
+            category: document.getElementById("category").value,
+            phoneNumber: document.getElementById("phoneNumber").value,
+            area: document.getElementById("area").value,
+            education: document.getElementById("education").value,
+            school: document.getElementById("school").value,
+            date: document.getElementById("date").value,
+            //doc: document.getElementById("email").value,
+            titleExperience: document.getElementById("titleExperience").value,
+            startingDate: document.getElementById("startingDate").value,
+            endingDate: document.getElementById("endingDate").value,
+        }
+        axios.post("http://localhost:8000/home/register", body)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log("coté front   ", err);
+            });
     };
 
 
@@ -52,26 +59,26 @@ export default function Register() {
 
 
 
-    
+
     const [passwordChecked, setPasswordChecked] = useState(false)
     const [confirmPasswordChecked, setConfirmPasswordChecked] = useState(false)
 
     const [completedForm, setCompletedForm] = useState(false)
 
     useEffect(() => {
-        
-        if(password.length > 7) {
+
+        if (password.length > 7) {
             setPasswordChecked(true)
         } else {
             setPasswordChecked(false)
         }
-        if(password === confirmPassword) {
+        if (password === confirmPassword) {
             setConfirmPasswordChecked(true)
         } else {
             setConfirmPasswordChecked(false)
         }
 
-        if(passwordChecked) {
+        if (passwordChecked) {
             if (confirmPasswordChecked) {
                 setCompletedForm(true)
             } else {
@@ -82,32 +89,31 @@ export default function Register() {
         }
 
     }, [
-        password, 
+        password,
         confirmPassword,
         passwordChecked,
         confirmPasswordChecked,
     ]);
 
-    
-   
-    
+
+
+
 
 
     return (
         <div className="register">
-   
+
             <h2>Crééz votre compte</h2>
-            
+
             <form onSubmit={submit}>
-                
                 {/* <label>Photo de profil: </label>
                 <input type="image" id="picture" alt="" /> */}
 
                 <label>Prénom*: </label>
-                <input type="text" id="firstname" onChange={e => setFirstName(e.target.value)} required />
+                <input type="text" id="firstName" onChange={e => setFirstName(e.target.value)} required />
 
                 <label>Nom*: </label>
-                <input type="text" id="lastname" onChange={e => setLastName(e.target.value)} required />
+                <input type="text" id="lastName" onChange={e => setLastName(e.target.value)} required />
 
                 <label>Email*: </label>
                 <input type="email" id="email" onChange={e => setEmail(e.target.value)} required />
@@ -162,7 +168,7 @@ export default function Register() {
 
                 {/* <label>Attestation de formation: </label>
                 <input type="file" /> */}
-                
+
                 <label>Dernier poste occupé: </label>
                 <input type="text" id="titleExperience" onChange={e => setTitleExperience(e.target.value)} />
 
@@ -183,50 +189,50 @@ export default function Register() {
                 </select>
 
                 <label>Mot de passe*: </label>
-                {passwordChecked ? 
-                (
-                    <>
-                    Ok
-                    </>
-                ) : (
-                    <>
-                    Le mot de passe doit faire au moins 8 caractères
-                    </>
-                )
+                {passwordChecked ?
+                    (
+                        <>
+                            Ok
+                        </>
+                    ) : (
+                        <>
+                            Le mot de passe doit faire au moins 8 caractères
+                        </>
+                    )
                 }
-                <input type="password" id="Mot de passe" onChange={e => setPassword(e.target.value)} required />
-                {confirmPasswordChecked ? 
-                (
-                    <>
-                    Ok
-                    </>
-                ) : (
-                    <>
-                    Le mot de passe ne correspond pas
-                    </>
-                )
+                <input type="password" id="password" onChange={e => setPassword(e.target.value)} required />
+                {confirmPasswordChecked ?
+                    (
+                        <>
+                            Ok
+                        </>
+                    ) : (
+                        <>
+                            Le mot de passe ne correspond pas
+                        </>
+                    )
                 }
                 <input type="password" placeholder="Confirmer mot de passe" onChange={e => setConfirmPassword(e.target.value)} required />
-                
+
                 {completedForm ? (
                     <>
-                    <Link to="/waitingforvalidation">
-                    <button type="submit" className="register-button">S'enregistrer</button>
-                    </Link>
+
+                        <button type="submit" className="register-button">S'enregistrer</button>
+
                     </>
                 ) : (
                     <>
-                    <button disabled type="submit" className="register-button">S'enregistrer</button>
+                        <button disabled type="submit" className="register-button">S'enregistrer</button>
                     </>
                 )
                 }
 
             </form>
-            
+
             Vous avez déjà un compte ?
             <Link to="/">
                 <button>Connectez vous</button>
             </Link>
         </div>
-        );
+    );
 }
