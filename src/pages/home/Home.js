@@ -4,20 +4,32 @@ import NavBar from '../../components/navbar/NavBar'
 import PostEvent from '../../components/post/PostEvent';
 import AddModifyEvent from '../../components/addModifyEvent/AddModifyEvent';
 
-
+import axios from "axios";
 import './Home.css'
 
 
-export default function Home() {
+export default function Home(props) {
 
     const [toggleFilter, setToggleFilter] = useState(false)
     const [toggleCreatePost, setToggleCreatePost] = useState(false)
 
-
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        //faire l'appel au serveur pour récupérer la liste des posts
+        console.log("UseEFFECT MARCHE")
+        axios.get("http://localhost:8000/event", { withCredentials: true })
+            .then((res) => {
+                //const allEvent = res.data.data;
+                console.log("console log de res.data.data   ", res.data.data)
+                setPosts(res.data.data); // push les data dans le state
+                console.log("console log de post   ", posts); // allEvent.map() 
+            })
+            .catch((err) => {
+                console.log("coté front   ", err);
+            });
+
     }, []);
+
 
 
 
@@ -113,15 +125,6 @@ export default function Home() {
                             <>
                                 <button className="filter-button" onClick={handleFilter}>Filtre</button>
                                 <button className="create-post" onClick={handleCreatePost}>Créer un évenement</button>
-                                {/* {toggleCreatePost ? (
-                                    <>
-                                        <AddModifyEvent />
-                                    </>
-                                ) : (
-                                    <>
-
-                                    </>
-                                )} */}
                             </>
                         )}
 
@@ -135,7 +138,19 @@ export default function Home() {
 
 
 
-                    <PostEvent />
+                    <PostEvent /> {/* ici faire  map en remplissant le composant PostEvent avec les data de AllUser récupérée dans le useeffect */}
+
+                    {posts.map(post => (
+                        <>
+                            <div key={post.id}>
+                                {post.title}
+                                {post.date}
+                                {post.place}
+                                {post.description}
+                            </div>
+                        </>
+                    ))}
+
                 </div>
             </div>
 

@@ -7,16 +7,17 @@ import { Link, useHistory } from 'react-router-dom'
 
 
 export default function WaitingForValidation() {
-    
-    return ( 
+
+
+    return (
         <div className="waitingForValidation">
             <h2>
-            Votre compte est en cours de validation
+                Votre compte est en cours de validation
 
 
             </h2>
             <h3>
-            Veuillez vous reconnecter plus tard ou contacter xxx@xxx.croixrouge.fr
+                Veuillez vous reconnecter plus tard ou contacter xxx@xxx.croixrouge.fr
             </h3>
             <Link to="/">
                 <button>Revenir a la page de login</button>
