@@ -19,8 +19,7 @@ export default function Profile () {
 
                     </div>
                     <div className="profile-info">
-                    Dupond <br />
-                    Jean <br />
+                    Dupond Jean <br />
                     Alumni étudiant
                     </div>
                 </div>
@@ -35,6 +34,7 @@ export default function Profile () {
                 Infirmier à Paris en 2020
                 </div>
                 <div className="profile-card  profile-job-list">
+                Posts: <br />
                 Infirmier à Hopital Saint Anne de 2021 à Aujourd'hui (poste en cours)
                 </div>
                 <div className="profile-edit">

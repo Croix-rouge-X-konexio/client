@@ -10,7 +10,7 @@
 .newsfeed-button {
     display: flex;
     justify-content: space-between;
-    width: 1000px;
+    width: 800px;
     
 }
 
@@ -45,7 +45,7 @@
 }
 
 .filter-window {
-    width: 1000px;
+    width: 800px;
     display: flex;
     flex-direction: column;
     position: relative;

@@ -20,6 +20,7 @@ export default function Register() {
                 phoneNumber: document.getElementById("phoneNumber").value,
                 area: document.getElementById("area").value,
                 education: document.getElementById("education").value,
+                school: document.getElementById("school").value,
                 date: document.getElementById("date").value,
                 //doc: document.getElementById("email").value,
                 titleExperience: document.getElementById("titleExperience").value,
@@ -38,6 +39,7 @@ export default function Register() {
     const [email, setEmail] = useState()
     const [phoneNumber, setPhoneNumber] = useState()
     const [education, setEducation] = useState()
+    const [school, setSchool] = useState()
     const [date, setDate] = useState()
     const [area, setArea] = useState()
     const [titleExperience, setTitleExperience] = useState()
@@ -142,6 +144,13 @@ export default function Register() {
                     <option value="Ambulancier">Ambulancier</option>
                     <option value="Brancardier">Brancardier</option>
                     <option value="Infirmier">Infirmier</option>
+                </select>
+
+                <label>Institut*: </label>
+                <select name="school" id="school" onChange={e => setSchool(e.target.value)} required >
+                    <option value="Paris">Paris</option>
+                    <option value="Bordeaux">Bordeaux</option>
+                    <option value="Toulouse">Toulouse</option>
                 </select>
 
                 <label>Année de formation*: </label>

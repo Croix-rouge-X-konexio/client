@@ -60,12 +60,15 @@ export default function PostEvent () {
                             </div>
                         </div>
 
-                    <div className="post-event-header-image"> 
-                        <img src={photo} alt="" />
-                    </div>
+                    
                     
                     
                 </div>
+
+                <div> 
+                    <img className="post-event-image" src={photo} alt="" />
+                </div>
+
                 <div className="post-event-description">
                     Pour les infirmiers uniquement    
                 </div>
