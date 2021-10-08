@@ -8,12 +8,12 @@ import AddModifyEvent from '../../components/addModifyEvent/AddModifyEvent';
 import './Home.css'
 
 
-export default function Home () {
+export default function Home() {
 
     const [toggleFilter, setToggleFilter] = useState(false)
     const [toggleCreatePost, setToggleCreatePost] = useState(false)
 
-    
+
 
     useEffect(() => {
         //faire l'appel au serveur pour récupérer la liste des posts
@@ -21,7 +21,7 @@ export default function Home () {
 
 
 
-    const handleFilter =()=> {
+    const handleFilter = () => {
         if (toggleFilter) {
             setToggleFilter(false)
 
@@ -31,7 +31,7 @@ export default function Home () {
         }
     }
 
-    const handleCreatePost =()=> {
+    const handleCreatePost = () => {
         if (toggleCreatePost) {
             setToggleCreatePost(false)
 
@@ -42,25 +42,25 @@ export default function Home () {
     }
 
     const createPostModalCustomStyles = {
-        content : {
-          top                   : '50%',
-          left                  : '50%',
-          right                 : '50%',
-          bottom                : '0%',
-          marginRight           : '-50%',
-          transform             : 'translate(-50%, -50%)', 
-          borderRadius           : '10px',
+        content: {
+            top: '50%',
+            left: '50%',
+            right: '50%',
+            bottom: '0%',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+            borderRadius: '10px',
         }
     };
 
     return (
         <div>
             <NavBar />
-                <div className="home">
-                    <div className="newsfeed">
-                        <div className="newsfeed-button">
-                            {toggleFilter ? (
-                                <>
+            <div className="home">
+                <div className="newsfeed">
+                    <div className="newsfeed-button">
+                        {toggleFilter ? (
+                            <>
                                 <form className="filter-window">
                                     <div className="filter-area">
                                         <label>Région: </label>
@@ -81,11 +81,11 @@ export default function Home () {
                                         </select>
                                     </div>
                                     <div className="filter-type">
-                                    <label>Type de posts: </label>
+                                        <label>Type de posts: </label>
                                         <select name="education" id="education">
                                             <option value="Tous les posts">Tous les posts</option>
                                             <option value="event">Evenement</option>
-                                            
+
                                         </select>
                                     </div>
                                     <div className="filter-education">
@@ -108,28 +108,37 @@ export default function Home () {
                                         <button type="submit" onClick={handleFilter}>Appliquer le filtre</button>
                                     </div>
                                 </form>
-                                </>
-                            ):(
-                                <>
+                            </>
+                        ) : (
+                            <>
                                 <button className="filter-button" onClick={handleFilter}>Filtre</button>
                                 <button className="create-post" onClick={handleCreatePost}>Créer un évenement</button>
-                                </>
-                            )}
-                            
-                        </div>
-                        
-                        <Modal isOpen={toggleCreatePost} style={createPostModalCustomStyles}  onRequestClose={()=> setToggleCreatePost(false)}>
-                            <button onClick={handleCreatePost}>x</button>
-                            <AddModifyEvent/>
-                        </Modal>
-                        
-                        
-                    
-                        
-                        <PostEvent />
+                                {/* {toggleCreatePost ? (
+                                    <>
+                                        <AddModifyEvent />
+                                    </>
+                                ) : (
+                                    <>
+
+                                    </>
+                                )} */}
+                            </>
+                        )}
+
                     </div>
+
+                    <Modal ariaHideApp={false} isOpen={toggleCreatePost} style={createPostModalCustomStyles} onRequestClose={() => setToggleCreatePost(false)}>
+                        <button onClick={handleCreatePost}>x</button>
+                        <AddModifyEvent />
+                    </Modal>
+
+
+
+
+                    <PostEvent />
                 </div>
-            
+            </div>
+
         </div>
     );
 }
