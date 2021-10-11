@@ -8,12 +8,13 @@ import AddModifyEvent from '../../components/addModifyEvent/AddModifyEvent';
 import './Home.css'
 
 
-export default function Home () {
+export default function Home (props) {
 
     const [toggleFilter, setToggleFilter] = useState(false)
     const [toggleCreatePost, setToggleCreatePost] = useState(false)
 
-    
+    const [count, setCount] = useState(0);
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         //faire l'appel au serveur pour récupérer la liste des posts
@@ -123,8 +124,45 @@ export default function Home () {
                             <AddModifyEvent/>
                         </Modal>
                         
-                        
-                    
+			            {posts.map((post) => (
+                            <>
+                            <div key={post.id} className="post-event">
+
+                                <div className="post-event-header">
+                                
+                                    <div className="post-event-header-detail">
+                                        <div className="post-event-header-title">
+                                        {post.title}
+                                        </div>
+                                        <div className="post-event-header-time">
+                                        {post.date}
+                                        </div>
+                                        <div className="post-event-header-location">
+                                        {post.place}
+                                        </div>
+                                        <div className="post-event-header-interested-count">
+                                        0 interessé(s)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div> 
+                                    <img className="post-event-image" src={} alt="" />
+                                </div>
+
+                                <div className="post-event-description">
+                                {post.description}   
+                                </div>
+
+                                <div className="post-event-buttons">
+                                    <div>
+                                        <button className="post-event-delete">Supprimer l'évenement</button>
+                                    </div>
+                                    <button className="interested">Interessé</button>
+                                </div>
+                            </div>
+                            </>
+			            ))}
                         
                         <PostEvent />
                     </div>

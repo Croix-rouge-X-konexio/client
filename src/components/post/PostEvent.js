@@ -9,37 +9,9 @@ import './Post.css'
 
 export default function PostEvent () {
 
-    const [modifyEvent, setModifyEvent] = useState(false)
-    const handleModifyEvent =()=> {
-        if (modifyEvent) {
-            setModifyEvent(false)
-
-        } else {
-            setModifyEvent(true)
-
-        }
-    }
-
-    const modifyPostModalCustomStyles = {
-        content : {
-          top                   : '50%',
-          left                  : '50%',
-          right                 : '50%',
-          bottom                : '0%',
-          marginRight           : '-50%',
-          transform             : 'translate(-50%, -50%)',  
-          borderRadius           : '10px',
-        }
-    };
-
     return (
         <div>
-            <div className="post-modal">
-                <Modal isOpen={modifyEvent} style={modifyPostModalCustomStyles} onRequestClose={()=> setModifyEvent(false)}>
-                    <button onClick={handleModifyEvent}>x</button>
-                    <AddModifyEvent/>
-                </Modal>
-            </div>
+   
             
             <div className="post-event">
 
