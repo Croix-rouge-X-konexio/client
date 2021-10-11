@@ -8,17 +8,23 @@ import './Post.css'
 
 export default function PostEvent() {
 
-
+    const deleteEvent = async () => {
+        const eventId = e.target.eventId
+        // const eventId = retrouver l'id de l'Event via la valeur ID enregistrée sur le bouton (dans le HTLM)
+        await axios.delete(`http://localhost:8000/event/${eventId}`, { withCredentials: true })
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log("coté front   ", err);
+            });
+    }
 
 
     return (
         <div>
-
-
             <div className="post-event">
-
                 <div className="post-event-header">
-
                     <div className="post-event-header-detail">
                         <div className="post-event-header-title">
                             Conférence infirmier
@@ -33,10 +39,6 @@ export default function PostEvent() {
                             0 interessé(s)
                         </div>
                     </div>
-
-
-
-
                 </div>
 
                 <div>
@@ -49,12 +51,12 @@ export default function PostEvent() {
 
                 <div className="post-event-buttons">
                     <div>
-                        <button className="post-event-delete">Supprimer l'évenement</button>
+                        <button onClick={deleteEvent} eventId={post.id} className="post-event-delete">Supprimer l'évenement</button>
                     </div>
+
                     <button className="interested">Interessé</button>
                 </div>
             </div>
         </div>
-
     )
 }

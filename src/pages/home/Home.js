@@ -142,11 +142,11 @@ export default function Home(props) {
 
                     {posts.map(post => (
                         <>
-                            <div key={post.id}>
-                                {post.title}
-                                {post.date}
-                                {post.place}
-                                {post.description}
+                            <div key={post.Event.id}>
+                                {post.Event.title}
+                                {post.Event.date}
+                                {post.Event.place}
+                                {post.Event.description}
                             </div>
                         </>
                     ))}
