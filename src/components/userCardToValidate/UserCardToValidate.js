@@ -21,11 +21,12 @@ export default function UserCardToValidate(props) {
             });
     }
 
-    const validateUser = async () => {
-        // const userId = retrouver l'id du user via la valeur ID enregistrée sur le bouton (dans le HTLM)
-        await axios.patch(`http://localhost:8000/list/listUsers/:id`, { withCredentials: true })
+    const validateUser = async (e) => {
+        const idOfUser = e.target.getAttribute("userId");
+        console.log(idOfUser);
+        await axios.patch(`http://localhost:8000/list/listUsers/${idOfUser}`, { withCredentials: true })
             .then((res) => {
-                console.log(res);
+                console.log(res);   
             })
             .catch((err) => {
                 console.log("coté front   ", err);
@@ -45,10 +46,10 @@ export default function UserCardToValidate(props) {
                     Email : {props.email}
                     </div>
                     <div>
-                        Is admin : {props.isAdmin}
+                        Is admin : {props.isAdmin ? (<span>true</span>) : (<span>false</span>) }
                     </div>
                     <div>
-                        Statut : {props.isValidate}
+                        Statut : {props.isValidate ? (<span>validé</span>) : (<span>non validé</span>) }
                     </div>
                 </div>
             </div>
