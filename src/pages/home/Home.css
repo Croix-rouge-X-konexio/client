@@ -63,3 +63,8 @@
 .filter-education input {
     margin-right: 3px;
 }
+
+.events p {
+    font: 10rem;
+    color: black;
+}

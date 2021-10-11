@@ -1,28 +1,41 @@
-import React, { useState, useEffect, } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import NavBar from '../../components/navbar/NavBar'
 import PostEvent from '../../components/post/PostEvent';
 import AddModifyEvent from '../../components/addModifyEvent/AddModifyEvent';
 
-
+import axios from "axios";
 import './Home.css'
 
 
-export default function Home (props) {
+
+export default function Home(props) {
 
     const [toggleFilter, setToggleFilter] = useState(false)
     const [toggleCreatePost, setToggleCreatePost] = useState(false)
 
-    const [count, setCount] = useState(0);
     const [posts, setPosts] = useState([]);
 
+    
     useEffect(() => {
-        //faire l'appel au serveur pour récupérer la liste des posts
+        console.log("UseEFFECT MARCHE")
+        axios.get("http://localhost:8000/event", { withCredentials: true })
+            .then((res) => {
+                //const allEvent = res.data.data;
+                console.log("console log de res.data.data   ", res.data.data)
+                setPosts(res.data.data); // push les data dans le state
+                // allEvent.map() 
+            })
+            .catch((err) => {
+                console.log("coté front   ", err);
+            });
+         
     }, []);
 
+    
 
 
-    const handleFilter =()=> {
+    const handleFilter = () => {
         if (toggleFilter) {
             setToggleFilter(false)
 
@@ -32,7 +45,7 @@ export default function Home (props) {
         }
     }
 
-    const handleCreatePost =()=> {
+    const handleCreatePost = () => {
         if (toggleCreatePost) {
             setToggleCreatePost(false)
 
@@ -43,25 +56,26 @@ export default function Home (props) {
     }
 
     const createPostModalCustomStyles = {
-        content : {
-          top                   : '50%',
-          left                  : '50%',
-          right                 : '50%',
-          bottom                : '0%',
-          marginRight           : '-50%',
-          transform             : 'translate(-50%, -50%)', 
-          borderRadius           : '10px',
+        content: {
+            top: '50%',
+            left: '50%',
+            right: '50%',
+            bottom: '0%',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+            borderRadius: '10px',
         }
     };
+    console.log("console log de post   ", posts)
 
     return (
         <div>
             <NavBar />
-                <div className="home">
-                    <div className="newsfeed">
-                        <div className="newsfeed-button">
-                            {toggleFilter ? (
-                                <>
+            <div className="home">
+                <div className="newsfeed">
+                    <div className="newsfeed-button">
+                        {toggleFilter ? (
+                            <>
                                 <form className="filter-window">
                                     <div className="filter-area">
                                         <label>Région: </label>
@@ -82,11 +96,11 @@ export default function Home (props) {
                                         </select>
                                     </div>
                                     <div className="filter-type">
-                                    <label>Type de posts: </label>
+                                        <label>Type de posts: </label>
                                         <select name="education" id="education">
                                             <option value="Tous les posts">Tous les posts</option>
                                             <option value="event">Evenement</option>
-                                            
+
                                         </select>
                                     </div>
                                     <div className="filter-education">
@@ -109,65 +123,32 @@ export default function Home (props) {
                                         <button type="submit" onClick={handleFilter}>Appliquer le filtre</button>
                                     </div>
                                 </form>
-                                </>
-                            ):(
-                                <>
+                            </>
+                        ) : (
+                            <>
                                 <button className="filter-button" onClick={handleFilter}>Filtre</button>
                                 <button className="create-post" onClick={handleCreatePost}>Créer un évenement</button>
-                                </>
-                            )}
-                            
-                        </div>
-                        
-                        <Modal isOpen={toggleCreatePost} style={createPostModalCustomStyles}  onRequestClose={()=> setToggleCreatePost(false)}>
-                            <button onClick={handleCreatePost}>x</button>
-                            <AddModifyEvent/>
-                        </Modal>
-                        
-			            {posts.map((post) => (
-                            <>
-                            <div key={post.id} className="post-event">
-
-                                <div className="post-event-header">
-                                
-                                    <div className="post-event-header-detail">
-                                        <div className="post-event-header-title">
-                                        {post.title}
-                                        </div>
-                                        <div className="post-event-header-time">
-                                        {post.date}
-                                        </div>
-                                        <div className="post-event-header-location">
-                                        {post.place}
-                                        </div>
-                                        <div className="post-event-header-interested-count">
-                                        0 interessé(s)
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div> 
-                                    <img className="post-event-image" src={} alt="" />
-                                </div>
-
-                                <div className="post-event-description">
-                                {post.description}   
-                                </div>
-
-                                <div className="post-event-buttons">
-                                    <div>
-                                        <button className="post-event-delete">Supprimer l'évenement</button>
-                                    </div>
-                                    <button className="interested">Interessé</button>
-                                </div>
-                            </div>
                             </>
-			            ))}
-                        
-                        <PostEvent />
+                        )}
+
                     </div>
+
+                    <Modal ariaHideApp={false} isOpen={toggleCreatePost} style={createPostModalCustomStyles} onRequestClose={() => setToggleCreatePost(false)}>
+                        <button onClick={handleCreatePost}>x</button>
+                        <AddModifyEvent />
+                    </Modal>
+
+                    {posts.map(post => 
+                        <PostEvent 
+                            title={post.Event.title} 
+                            date={post.Event.date} 
+                            place={post.Event.place} 
+                            description={post.Event.description} />
+                    )}
+
                 </div>
-            
+            </div>
+
         </div>
     );
 }
