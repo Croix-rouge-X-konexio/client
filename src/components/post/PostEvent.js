@@ -1,10 +1,24 @@
+import React from 'react';
+
 import photo from '../../images/img.jpg'
 
+import axios from "axios";
 import './Post.css'
 
 
-
 export default function PostEvent(props) {
+
+    const deleteEvent = async (e) => {
+        const eventId = e.target.eventId
+        await axios.delete(`http://localhost:8000/event/${eventId}`, { withCredentials: true })
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log("coté front   ", err);
+            });
+    }
+
 
     return (
         <div>
@@ -33,12 +47,12 @@ export default function PostEvent(props) {
                 </div>
                 <div className="post-event-buttons">
                     <div>
-                        <button className="post-event-delete">Supprimer l'évenement</button>
+                        <button onClick={deleteEvent} eventId={props.id} className="post-event-delete">Supprimer l'évenement</button>
                     </div>
+
                     <button className="interested">Interessé</button>
                 </div>
             </div>
         </div>
-
     )
 }

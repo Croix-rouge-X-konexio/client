@@ -1,7 +1,36 @@
 
+import React from 'react';
+
+import axios from "axios";
+
+
 import './UserCardToValidate.css'
 
-export default function UserCardToValidate (props) {
+export default function UserCardToValidate(props) {
+
+
+
+    const deleteUser = async () => {
+        // const userId = retrouver l'id du user via la valeur ID enregistrée sur le bouton (dans le HTLM)
+        await axios.delete(`http://localhost:8000/list/listUsers/:id`, { withCredentials: true })
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log("coté front   ", err);
+            });
+    }
+
+    const validateUser = async () => {
+        // const userId = retrouver l'id du user via la valeur ID enregistrée sur le bouton (dans le HTLM)
+        await axios.patch(`http://localhost:8000/list/listUsers/:id`, { withCredentials: true })
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log("coté front   ", err);
+            });
+    }
 
     return (
         <div className="userCardToValidate">
@@ -24,9 +53,10 @@ export default function UserCardToValidate (props) {
                 </div>
             </div>
             <div className="userCardToValidate-button">
-                <button className="delete" userId={props.userid}>Supprimer</button>
-                <button className="validate" userId={props.userid}>Valider</button>
-            </div>    
+                <button className="delete" onClick={deleteUser} userId={props.userid}>Supprimer</button>
+                <button className="validate" onClick={validateUser} userId={props.userid}>Valider</button>
+            </div>
+
         </div>
     )
 }
