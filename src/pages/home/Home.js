@@ -15,7 +15,7 @@ export default function Home(props) {
 
     const [posts, setPosts] = useState([]);
 
-    
+
     useEffect(() => {
         console.log("UseEFFECT MARCHE")
         axios.get("http://localhost:8000/event", { withCredentials: true })
@@ -28,10 +28,10 @@ export default function Home(props) {
             .catch((err) => {
                 console.log("coté front   ", err);
             });
-         
+
     }, []);
 
-    
+
 
 
     const handleFilter = () => {
@@ -137,11 +137,12 @@ export default function Home(props) {
                         <AddModifyEvent />
                     </Modal>
 
-                    {posts.map(post => 
-                        <PostEvent 
-                            title={post.Event.title} 
-                            date={post.Event.date} 
-                            place={post.Event.place} 
+                    {posts.map(post =>
+                        <PostEvent
+                            eventId={post.Event._id}
+                            title={post.Event.title}
+                            date={post.Event.date}
+                            place={post.Event.place}
                             description={post.Event.description} />
                     )}
 

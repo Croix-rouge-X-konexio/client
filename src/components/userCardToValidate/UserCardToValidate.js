@@ -22,6 +22,10 @@ export default function UserCardToValidate(props) {
             });
     }
 
+
+    // Les faire en UseEffect si on a tout fini
+
+
     const validateUser = async (e) => {
         console.log("j'appuie sur patch");
         const idOfUser = e.target.getAttribute("userId");
