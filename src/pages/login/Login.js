@@ -3,6 +3,8 @@ import { Link, useHistory } from 'react-router-dom'
 
 import axios from "axios"
 
+import './Login.css'
+
 export default function Login() {
 
 
@@ -42,7 +44,7 @@ export default function Login() {
 
             </form>
             <Link to="/register">
-                <button>Créez votre compte</button>
+                <button className="create-account-button">Créez votre compte</button>
             </Link>
             <button className="forgot-password">Mot de passe oublié ?</button>
         </div>
