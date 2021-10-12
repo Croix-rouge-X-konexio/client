@@ -12,9 +12,7 @@ export default function Home(props) {
 
     const [toggleFilter, setToggleFilter] = useState(false)
     const [toggleCreatePost, setToggleCreatePost] = useState(false)
-
     const [posts, setPosts] = useState([]);
-
 
     useEffect(() => {
         console.log("UseEFFECT MARCHE")
@@ -30,9 +28,6 @@ export default function Home(props) {
             });
 
     }, []);
-
-
-
 
     const handleFilter = () => {
         if (toggleFilter) {
@@ -52,6 +47,23 @@ export default function Home(props) {
             setToggleCreatePost(true)
 
         }
+    }
+
+    //supprimer en temps reel les posts
+
+    const [postList, updatePostList] = useState(posts)
+
+    const handleRemovePost = async (e) => {
+        const eventId = e.target.getAttribute("eventId");
+        const copyList = [...postList]
+        updatePostList(copyList.filter(post => post.eventId !== eventId))
+        await axios.delete(`http://localhost:8000/event/${eventId}`, { withCredentials: true })
+            .then((res) => {
+                // console.log(res);
+            })
+            .catch((err) => {
+                console.log("coté front   ", err);
+            })
     }
 
     const createPostModalCustomStyles = {
@@ -139,13 +151,24 @@ export default function Home(props) {
 
                     {posts.map(post =>
                         <PostEvent
+                            key={post.Event._id}
                             eventId={post.Event._id}
                             title={post.Event.title}
                             date={post.Event.date}
                             place={post.Event.place}
-                            description={post.Event.description} />
+                            description={post.Event.description}
+                        />
                     )}
-
+                    {/* {postList.map(post =>
+                        <PostEvent
+                            key={post.Event._id}
+                            eventId={post.Event._id}
+                            title={post.Event.title}
+                            date={post.Event.date}
+                            place={post.Event.place}
+                            description={post.Event.description}
+                            deleteEvent={handleRemovePost()} />
+                    )} */}
                 </div>
             </div>
 

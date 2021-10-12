@@ -11,7 +11,6 @@ import './Register.css'
 export default function Register() {
     const submit = (e) => {
         e.preventDefault();
-        console.log("requête envoyée !");
         const body = {
             email: document.getElementById("email").value,
             password: document.getElementById("password").value,
@@ -31,7 +30,7 @@ export default function Register() {
         }
         axios.post("http://localhost:8000/home/register", body)
             .then((res) => {
-                console.log(res);
+                // console.log(res);
             })
             .catch((err) => {
                 console.log("coté front   ", err);
@@ -92,19 +91,19 @@ export default function Register() {
                 <input type="image" id="picture" alt="" /> */}
 
                 <label>Prénom*: </label>
-                <input type="text" id="firstName" required />
+                <input className="register-element" type="text" id="firstName" required />
 
                 <label>Nom*: </label>
-                <input type="text" id="lastName" required />
+                <input className="register-element" type="text" id="lastName" required />
 
                 <label>Email*: </label>
-                <input type="email" id="email" required />
+                <input className="register-element" type="email" id="email" required />
 
                 <label>Télephone mobile*: </label>
-                <input type="tel" id="phoneNumber" required />
+                <input className="register-element" type="tel" id="phoneNumber" required />
 
                 <label>Statut*: </label>
-                <select name="category" id="category" required >
+                <select className="register-element" name="category" id="category" required >
                     <option value="Etudiant">Etudiant</option>
                     <option value="Apprenti">Apprenti</option>
                     <option value="Alumni étudiant">Alumni étudiant</option>
@@ -112,7 +111,7 @@ export default function Register() {
                 </select>
 
                 <label>Région*: </label>
-                <select name="area" id="area" required >
+                <select className="register-element" name="area" id="area" required >
                     <option value="Auvergne-Rhône-Alpe">Auvergne-Rhône-Alpes</option>
                     <option value="Bourgogne-Franche-Compté">Bourgogne-Franche-Compté</option>
                     <option value="Bretagne">Bretagne</option>
@@ -128,21 +127,21 @@ export default function Register() {
                 </select>
 
                 <label>Formation*: </label>
-                <select name="education" id="education" required >
+                <select className="register-element" name="education" id="education" required >
                     <option value="Ambulancier">Ambulancier</option>
                     <option value="Brancardier">Brancardier</option>
                     <option value="Infirmier">Infirmier</option>
                 </select>
 
                 <label>Institut*: </label>
-                <select name="school" id="school" required >
+                <select className="register-element" name="school" id="school" required >
                     <option value="Paris">Paris</option>
                     <option value="Bordeaux">Bordeaux</option>
                     <option value="Toulouse">Toulouse</option>
                 </select>
 
                 <label>Année de formation*: </label>
-                <select name="date" id="date" required >
+                <select className="register-element" name="date" id="date" required >
                     <option value="2021">2021</option>
                     <option value="2020">2020</option>
                     <option value="2019">2019</option>
@@ -152,10 +151,10 @@ export default function Register() {
                 <input type="file" /> */}
 
                 <label>Dernier poste occupé: </label>
-                <input type="text" id="titleExperience" />
+                <input className="register-element" type="text" id="titleExperience" />
 
                 <label>Date de début: </label>
-                <select name="startingDate" id="startingDate" >
+                <select className="register-element" name="startingDate" id="startingDate" >
                     <option value="2021">2021</option>
                     <option value="2020">2020</option>
                     <option value="2019">2019</option>
@@ -163,7 +162,7 @@ export default function Register() {
                 </select>
 
                 <label>Date de fin: </label>
-                <select name="endingDate" id="endingDate" >
+                <select className="register-element" name="endingDate" id="endingDate" >
                     <option value="En cours">En cours</option>
                     <option value="2021">2021</option>
                     <option value="2020">2020</option>
@@ -182,7 +181,7 @@ export default function Register() {
                         </>
                     )
                 }
-                <input type="password" id="password" onChange={e => setPassword(e.target.value)} required />
+                <input className="register-element" type="password" id="password" onChange={e => setPassword(e.target.value)} required />
                 {confirmPasswordChecked ?
                     (
                         <>
@@ -194,27 +193,27 @@ export default function Register() {
                         </>
                     )
                 }
-                <input type="password" placeholder="Confirmer mot de passe" onChange={e => setConfirmPassword(e.target.value)} required />
+                <input className="register-element" type="password" placeholder="Confirmer mot de passe" onChange={e => setConfirmPassword(e.target.value)} required />
 
                 {completedForm ? (
                     <>
 
-                        <button type="submit" className="register-button">S'enregistrer</button>
+                        <button type="submit" className="register-button register-element">S'enregistrer</button>
 
                     </>
                 ) : (
                     <>
-                        <button disabled type="submit" className="register-button">S'enregistrer</button>
+                        <button disabled type="submit" className="register-button register-element">S'enregistrer</button>
                     </>
                 )
                 }
-
+                <span className="register-element">Vous avez déjà un compte ?</span>
+                <Link to="/">
+                    <button className="return-login register-element">Connectez vous</button>
+                </Link>
             </form>
 
-            Vous avez déjà un compte ?
-            <Link to="/">
-                <button>Connectez vous</button>
-            </Link>
+
         </div>
     );
 }
