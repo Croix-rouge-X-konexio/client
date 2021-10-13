@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
-import NavBar from '../../components/navbar/NavBar'
+import NavBar from '../../components/navbar/NavBar';
 import PostEvent from '../../components/post/PostEvent';
 import AddModifyEvent from '../../components/addModifyEvent/AddModifyEvent';
 
@@ -59,6 +59,14 @@ export default function Home(props) {
     // }
 
     const createPostModalCustomStyles = {
+        overlay: {
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)'
+        },
         content: {
             top: '50%',
             left: '50%',
@@ -136,23 +144,24 @@ export default function Home(props) {
 
                     </div>
 
-                    <Modal 
-                        ariaHideApp={false} isOpen={toggleCreatePost} 
-                        style={createPostModalCustomStyles} 
+                    <Modal
+                        ariaHideApp={false} isOpen={toggleCreatePost}
+                        style={createPostModalCustomStyles}
                         onRequestClose={() => setToggleCreatePost(false)}>
-                        <button onClick={handleCreatePost}>x</button>
+                        <button className="close-modal" onClick={handleCreatePost}><i class="fas fa-times-circle"></i></button>
                         <AddModifyEvent handleCloseModal={() => setToggleCreatePost(false)} />
                     </Modal>
 
                     {posts.map(post =>
                         <PostEvent
                             key={post.Event._id}
+                            Attendees={post.Event.numberOfAttendies}
                             eventId={post.Event._id}
                             title={post.Event.title}
                             date={post.Event.date}
                             place={post.Event.place}
                             description={post.Event.description}
-                           
+
                         />
                     ).reverse()}
                     {/* {postList.map(post =>

@@ -33,28 +33,46 @@ export default function AddModifyEvent(props) {
         <div>
             <div className="addmodify-window">
                 <form onSubmit={submit}>
-                    <label>Titre de l'évenement: </label>
-                    <input type="text" id="title" required /><br />
-                    <label>Formation: </label>
-                    <select name="education" id="education" required>
-                        <option value="Ambulancier">Ambulancier</option>
-                        <option value="Brancardier">Brancardier</option>
-                        <option value="Infirmier">Infirmier</option>
-                    </select><br />
-                    <label>Lieu: </label>
-                    <input type="text" id="place" required /><br />
-                    <label>Description: </label><br />
-                    <textarea id="description" required /><br />
-                    <label>Date: </label>
-                    <input type="date" id="date" required />
-                    <label>Heure: </label>
-                    <input type="time" id="time" required /><br />
-                    <label>Durée (heure): </label>
-                    <input type="number" id="duration" required /><br />
-                    <input type="file" id="image" />
-                    <div className="create-post-buttons">
-                        <button type="submit">Valider</button>
+                    <label className="addmodify-window-element">Titre de l'évenement: </label><br />
+                    <input className="addmodify-window-element" type="text" id="title" required /><br />
+                    <div>
+                        <div className="rows">
+                            <div>
+                                <label className="addmodify-window-element">Formation: </label><br />
+                                <select className="addmodify-window-element" name="education" id="education" required>
+                                    <option value="Ambulancier">Ambulancier</option>
+                                    <option value="Brancardier">Brancardier</option>
+                                    <option value="Infirmier">Infirmier</option>
+                                </select><br />
+                            </div>
+                            <div>
+                                <label className="addmodify-window-element">Lieu: </label><br />
+                                <input className="addmodify-window-element" type="text" id="place" required /><br />
+                            </div>
+                        </div>
+                        <div className="rows">
+                            <div>
+                                <label className="addmodify-window-element">Date: </label><br />
+                                <input className="addmodify-window-element" type="date" id="date" required /><br />
+                            </div>
+                            <div>
+                                <label className="addmodify-window-element">Heure: </label><br />
+                                <input className="addmodify-window-element" type="time" id="time" required /><br />
+                            </div>
+                            <div>
+                                <label className="addmodify-window-element">Durée (heure): </label><br />
+                                <input className="addmodify-window-element" type="number" id="duration" required /><br />
+                            </div>
+                        </div>
                     </div>
+
+
+                    {/* <input type="file" id="image" /> */}
+                    <div>
+                        <label className="addmodify-window-element">Description: </label><br />
+                        <textarea id="description" required /><br />
+                    </div>
+                    <button className="create-post-button" type="submit">Valider</button>
                 </form>
             </div>
         </div>

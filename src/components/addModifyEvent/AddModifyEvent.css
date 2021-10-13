@@ -12,6 +12,11 @@
     
 }
 
+.rows {
+    display: flex;
+}
+
+
 .addmodify-window form {
     padding: 10px;
 }
@@ -32,9 +37,9 @@
 .addmodify-window form textarea {
     margin-top: 10px;
     height: 150px;
-    width: 100%;
+    width: 90%;
     padding: 20px;
     outline: none;
-    font-size: 1.5rem;
+    font-size: 1rem;
     resize: none;
 }

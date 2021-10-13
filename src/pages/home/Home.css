@@ -68,3 +68,11 @@
     font: 10rem;
     color: black;
 }
+
+.close-modal {
+    color: red;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    background-color: transparent;
+}
