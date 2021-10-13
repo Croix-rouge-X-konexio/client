@@ -70,7 +70,7 @@ export default function Home(props) {
         }
     };
     console.log("console log de post   ", posts)
-    console.log("console log de postList   ", postList)
+    //console.log("console log de postList   ", postList)
     return (
         <div>
             <NavBar />
