@@ -84,9 +84,12 @@ export default function Register() {
     return (
         <div className="register">
 
-            <h2>Crééz votre compte</h2>
+            
 
             <form onSubmit={submit}>
+
+                <h2>Crééz votre compte</h2>
+
                 {/* <label>Photo de profil: </label>
                 <input type="image" id="picture" alt="" /> */}
 
@@ -207,9 +210,9 @@ export default function Register() {
                     </>
                 )
                 }
-                <span className="register-element">Vous avez déjà un compte ?</span>
+                {/* <span className="register-element">Vous avez déjà un compte ?</span> */}
                 <Link to="/">
-                    <button className="return-login register-element">Connectez vous</button>
+                    <button className="return-login register-element">Se connecter avec un compte existant</button>
                 </Link>
             </form>
 
