@@ -1,21 +1,20 @@
 
 .addmodify-window {
-    width: 1000px;
+    width: 800px;
     display: flex;
     flex-direction: column;
     position: absolute;
     padding: 10px;
     background-color: rgb(255, 255, 255);
     color: grey;
-    font-size: 1.5rem;
-    z-index: 2;
+    font-size: 1rem;
+    z-index: 3;
     
 }
 
 .rows {
     display: flex;
 }
-
 
 .addmodify-window form {
     padding: 10px;
@@ -42,4 +41,17 @@
     outline: none;
     font-size: 1rem;
     resize: none;
+}
+
+.create-post-button {
+    padding: 10px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+.addmodify-window-element {
+    margin: 10px;
 }

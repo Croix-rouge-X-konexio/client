@@ -1,45 +1,56 @@
-import React, { useEffect, } from 'react';
-
+import React, { useState, useEffect, } from 'react';
+import axios from 'axios';
 import NavBar from '../../components/navbar/NavBar'
 
 import './Profile.css'
 
 
 
-export default function Profile () {
+export default function Profile() {
 
+    const [user, setUser] = useState();
 
+    useEffect(() => {
+        axios.get(`http://localhost:8000/list/listUsers/${/* ici recup l'ID dans le cookie */}`, { withCredentials: true })
+            .then((res) => {
+                console.log(res.data.data);
+                setUser(res.data.data);
+            })
+            .catch((err) => {
+                console.log("coté front   ", err);
+            });
+    }, []);
 
     return (
         <div>
             <NavBar />
             <div className="profile">
-                <div className="profile-card  profile-user">
-                    <div className="profile-picture">
 
-                    </div>
-                    <div className="profile-info">
-                    Dupond Jean <br />
-                    Alumni étudiant
-                    </div>
+                <div className="profile-info">
+                    {/* {user.firstName} {user.lastName} <br /> {user.category} */}
                 </div>
+
                 <div className="profile-card  profile-contact">
-                Contact:  <br />
-                jean.dupond@gmail.com <br />
-                07 12 34 56 78 <br />
-                Ile-de-France
+                    Contact:  <br />
+                    {/* {user.email} <br />
+                    {user.phoneNumber} <br />
+                    {user.location} */}
                 </div>
+
                 <div className="profile-card  profile-education-list">
-                Formation: <br />
-                Infirmier à Paris en 2020
+                    Formation: <br />
+                    {/* {user.education} {user.date} */}
                 </div>
+
                 <div className="profile-card  profile-job-list">
-                Posts: <br />
-                Infirmier à Hopital Saint Anne de 2021 à Aujourd'hui (poste en cours)
+                    Posts: <br />
+                    Infirmier à Hopital Saint Anne de 2021 à Aujourd'hui (poste en cours)
                 </div>
+
                 <div className="profile-edit">
                     <button>Modifier votre profil</button>
                 </div>
+
             </div>
         </div>
     );
