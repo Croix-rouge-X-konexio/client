@@ -1,15 +1,31 @@
-import React, { useEffect, } from 'react';
+import React, { useState, useEffect, } from 'react';
 
 import NavBar from '../../components/navbar/NavBar'
-
+import axios from 'axios';
 import './Profile.css'
 
 
 
 export default function Profile () {
 
+    const [user, setUser] = useState();
+    
 
+    useEffect(() => {
+        console.log("UseEFFECT MARCHE")
+        axios.get("http://localhost:8000/", { withCredentials: true })
+            .then((res) => {
 
+                console.log("console log de res.data.data   ", res.data.data)
+                setUser(res.data.data);
+            })
+            .catch((err) => {
+                console.log("coté front   ", err);
+            });
+
+    }, []);
+    console.log(user)
+    
     return (
         <div>
             <NavBar />
@@ -19,19 +35,19 @@ export default function Profile () {
 
                     </div>
                     <div className="profile-info">
-                    Dupond Jean <br />
-                    Alumni étudiant
+                    {/* {user.firstName} {user.lastName} <br />
+                    {user.category} */}
                     </div>
                 </div>
                 <div className="profile-card  profile-contact">
                 Contact:  <br />
-                jean.dupond@gmail.com <br />
-                07 12 34 56 78 <br />
-                Ile-de-France
+                {/* {user.email} <br />
+                {user.phoneNumber} <br />
+                {user.location} */}
                 </div>
                 <div className="profile-card  profile-education-list">
                 Formation: <br />
-                Infirmier à Paris en 2020
+                {/* {user.education} {user.date} */}
                 </div>
                 <div className="profile-card  profile-job-list">
                 Posts: <br />
