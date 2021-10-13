@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import React from 'react';
 import axios from "axios";
 import './AddModifyEvent.css'
 
-export default function AddModifyEvent() {
+export default function AddModifyEvent(props) {
 
     const submit = async (e) => {
         e.preventDefault()
@@ -17,16 +16,17 @@ export default function AddModifyEvent() {
             place: document.getElementById("place").value,
             // image: document.getElementById("image").value,
         }
-        // console.log(time)
-        const createPostResponse = await axios.post("http://localhost:8000/event", createPost, { withCredentials: true })
+        await axios.post("http://localhost:8000/event", createPost, { withCredentials: true })
             .then((res) => {
                 console.log(res);
             })
             .catch((err) => {
                 console.log("coté front   ", err);
             });
+        props.handleCloseModal()
+        window.location.reload();
     }
-    //     // console.log();
+
 
 
     return (

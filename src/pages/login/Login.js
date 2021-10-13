@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
+import "./Login.css"
 
 import axios from "axios"
 
@@ -18,35 +19,32 @@ export default function Login() {
         }
         const loginResponse = await axios.post("http://localhost:8000/home/logIn", loginUser, { withCredentials: true }) //withCredentials => pour indiquer à Axios de passer le Cookie
             .then((res) => {
-                console.log(res);
-
-                // History Push à mettre ICI avec la condition
-                // if (cookie exist ?)
-                // if (res.message === "la phrase qu'il faut") {
-                //history.push("/home");
-                //} else { ici le cas ou c'est }
-
+                if (res.data.message === "You are connected") {
+                    history.push("/home");
+                }
+                else {
+                    alert("Invalid email or password");
+                }
             })
             .catch((err) => {
                 console.log("coté front   ", err);
             });
-        console.log(loginUser);
+        // console.log(loginUser);
     }
 
 
     return (
         <div className="login">
             <form onSubmit={submit}>
-                <input className="login-input" type="email" id="email" placeholder="Email" required />
-                <input className="login-input" type="password" id="password" placeholder="Mot de passe" required />
+                <input className="login-input login-element" type="email" id="email" placeholder="Email" required />
+                <input className="login-input login-element" type="password" id="password" placeholder="Mot de passe" required />
 
-                <button type="submit" className="login-button" >Se connecter</button>
-
+                <button type="submit" className="login-button login-element" >Se connecter</button>
+                <Link to="/register">
+                    <button className="create-account-button login-element-small">Créez votre compte</button>
+                </Link>
+                <button className="forgot-password login-element-small">Mot de passe oublié ?</button>
             </form>
-            <Link to="/register">
-                <button className="create-account-button">Créez votre compte</button>
-            </Link>
-            <button className="forgot-password">Mot de passe oublié ?</button>
         </div>
     )
 }

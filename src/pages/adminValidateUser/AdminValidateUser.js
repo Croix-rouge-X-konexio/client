@@ -21,7 +21,7 @@ export default function AdminValidateUser(props) {
                 console.log("coté front   ", err);
             });
     }, []);
-    
+
     console.log("console log de users ligne 25", users);
 
     return (
@@ -29,8 +29,9 @@ export default function AdminValidateUser(props) {
             <NavBar />
             <div className="adminValidateUser">
                 <div className="adminValidateUser-users-list">
-                    {users.map(user => 
+                    {users.map(user =>
                         <UserCardToValidate
+                            key={user.userid}
                             firstName={user.firstName}
                             lastName={user.lastName}
                             email={user.email}

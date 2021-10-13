@@ -9,8 +9,24 @@ import './Post.css'
 export default function PostEvent(props) {
 
     const deleteEvent = async (e) => {
-        const eventId = e.target.eventId
+        const eventId = e.target.getAttribute("eventId");
+        
         await axios.delete(`http://localhost:8000/event/${eventId}`, { withCredentials: true })
+            .then((res) => {
+                // console.log(res);
+            })
+            .catch((err) => {
+                console.log("coté front   ", err);
+            });
+        //props.handleRemovePost(e)
+        window.location.reload();
+    }
+
+
+    const isInterested = async (e) => {
+        const eventId = e.target.getAttribute("eventId");
+        console.log("On a l'ID event", eventId)
+        await axios.post(`http://localhost:8000/event/interested/${eventId}`, {}, { withCredentials: true })
             .then((res) => {
                 console.log(res);
             })
@@ -18,7 +34,6 @@ export default function PostEvent(props) {
                 console.log("coté front   ", err);
             });
     }
-
 
     return (
         <div>
@@ -47,10 +62,10 @@ export default function PostEvent(props) {
                 </div>
                 <div className="post-event-buttons">
                     <div>
-                        <button onClick={deleteEvent} eventId={props.id} className="post-event-delete">Supprimer l'évenement</button>
+                        <button onClick={deleteEvent} eventId={props.eventId} className="post-event-delete">Supprimer l'évenement</button>
+                        
                     </div>
-
-                    <button className="interested">Interessé</button>
+                    <button onClick={isInterested} eventId={props.eventId} className="interested">Interessé</button>
                 </div>
             </div>
         </div>

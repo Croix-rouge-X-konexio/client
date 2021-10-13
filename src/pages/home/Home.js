@@ -12,27 +12,23 @@ export default function Home(props) {
 
     const [toggleFilter, setToggleFilter] = useState(false)
     const [toggleCreatePost, setToggleCreatePost] = useState(false)
-
     const [posts, setPosts] = useState([]);
+    const [postList, updatePostList] = useState([])
 
-    
     useEffect(() => {
         console.log("UseEFFECT MARCHE")
         axios.get("http://localhost:8000/event", { withCredentials: true })
             .then((res) => {
-                //const allEvent = res.data.data;
+
                 console.log("console log de res.data.data   ", res.data.data)
                 setPosts(res.data.data); // push les data dans le state
-                // allEvent.map() 
+                updatePostList(res.data.data);
             })
             .catch((err) => {
                 console.log("coté front   ", err);
             });
-         
+
     }, []);
-
-    
-
 
     const handleFilter = () => {
         if (toggleFilter) {
@@ -54,6 +50,14 @@ export default function Home(props) {
         }
     }
 
+    //supprimer en temps reel les posts
+
+    const handleRemovePost = (e) => {
+        const postId = e.target.getAttribute("_id");
+        const copyList = [...posts]
+        updatePostList(copyList.filter(post => post._id !== postId))
+    }
+
     const createPostModalCustomStyles = {
         content: {
             top: '50%',
@@ -66,7 +70,7 @@ export default function Home(props) {
         }
     };
     console.log("console log de post   ", posts)
-
+    console.log("console log de postList   ", postList)
     return (
         <div>
             <NavBar />
@@ -132,19 +136,36 @@ export default function Home(props) {
 
                     </div>
 
-                    <Modal ariaHideApp={false} isOpen={toggleCreatePost} style={createPostModalCustomStyles} onRequestClose={() => setToggleCreatePost(false)}>
+                    <Modal 
+                        ariaHideApp={false} isOpen={toggleCreatePost} 
+                        style={createPostModalCustomStyles} 
+                        onRequestClose={() => setToggleCreatePost(false)}>
                         <button onClick={handleCreatePost}>x</button>
-                        <AddModifyEvent />
+                        <AddModifyEvent handleCloseModal={() => setToggleCreatePost(false)} />
                     </Modal>
 
-                    {posts.map(post => 
-                        <PostEvent 
-                            title={post.Event.title} 
-                            date={post.Event.date} 
-                            place={post.Event.place} 
-                            description={post.Event.description} />
-                    )}
-
+                    {/* {posts.map(post =>
+                        <PostEvent
+                            key={post.Event._id}
+                            eventId={post.Event._id}
+                            title={post.Event.title}
+                            date={post.Event.date}
+                            place={post.Event.place}
+                            description={post.Event.description}
+                           
+                        />
+                    )} */}
+                    {postList.map(post =>
+                        <PostEvent
+                            key={post.Event._id}
+                            eventId={post.Event._id}
+                            title={post.Event.title}
+                            date={post.Event.date}
+                            place={post.Event.place}
+                            description={post.Event.description}
+                            //handleRemovePost={e=>handleRemovePost(e)} 
+                        />
+                    ).reverse()}
                 </div>
             </div>
 
