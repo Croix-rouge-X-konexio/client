@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
-import NavBar from '../../components/navbar/NavBar'
+import NavBar from '../../components/navbar/NavBar';
 import PostEvent from '../../components/post/PostEvent';
 import AddModifyEvent from '../../components/addModifyEvent/AddModifyEvent';
 
@@ -66,7 +66,7 @@ export default function Home(props) {
             right: 0,
             bottom: 0,
             backgroundColor: 'rgba(0, 0, 0, 0.5)'
-          },
+        },
         content: {
             height: '70%',
             top: '50%',
@@ -145,9 +145,9 @@ export default function Home(props) {
 
                     </div>
 
-                    <Modal 
-                        ariaHideApp={false} isOpen={toggleCreatePost} 
-                        style={createPostModalCustomStyles} 
+                    <Modal
+                        ariaHideApp={false} isOpen={toggleCreatePost}
+                        style={createPostModalCustomStyles}
                         onRequestClose={() => setToggleCreatePost(false)}>
                         <button className="close-modal" onClick={handleCreatePost}><i class="fas fa-times-circle"></i></button>
                         <AddModifyEvent handleCloseModal={() => setToggleCreatePost(false)} />
@@ -156,12 +156,13 @@ export default function Home(props) {
                     {posts.map(post =>
                         <PostEvent
                             key={post.Event._id}
+                            Attendees={post.Event.numberOfAttendies}
                             eventId={post.Event._id}
                             title={post.Event.title}
                             date={post.Event.date}
                             place={post.Event.place}
                             description={post.Event.description}
-                           
+
                         />
                     ).reverse()}
                     {/* {postList.map(post =>

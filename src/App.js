@@ -10,7 +10,7 @@ import Register from './pages/register/Register';
 import WaitingForValidation from './pages/waitingForValidation/WaitingForValidation';
 import Profile from './pages/profile/Profile';
 import AdminValidateUser from './pages/adminValidateUser/AdminValidateUser';
-
+import UserView from "./pages/UserView/UserView";
 
 export default function App() {
 
@@ -50,7 +50,7 @@ export default function App() {
         <Route exact path="/home" component={Home} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/adminvalidateuser" component={AdminValidateUser} />
-
+        <Route exact path="/UserView/:userId" component={UserView} />
       </Switch>
     </BrowserRouter>
   );

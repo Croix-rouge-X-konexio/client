@@ -10,7 +10,7 @@ export default function PostEvent(props) {
 
     const deleteEvent = async (e) => {
         const eventId = e.target.getAttribute("eventId");
-        
+
         await axios.delete(`http://localhost:8000/event/${eventId}`, { withCredentials: true })
             .then((res) => {
                 // console.log(res);
@@ -33,6 +33,7 @@ export default function PostEvent(props) {
             .catch((err) => {
                 console.log("coté front   ", err);
             });
+        window.location.reload();
     }
 
     return (
@@ -50,7 +51,7 @@ export default function PostEvent(props) {
                             {props.place}
                         </div>
                         <div className="post-event-header-interested-count">
-                            0 intéressé
+                            {props.Attendees} intéressé
                         </div>
                     </div>
                 </div>
@@ -63,7 +64,7 @@ export default function PostEvent(props) {
                 <div className="post-event-buttons">
                     <div>
                         <button onClick={deleteEvent} eventId={props.eventId} className="post-event-delete">Supprimer l'évenement</button>
-                        
+
                     </div>
                     <button onClick={isInterested} eventId={props.eventId} className="interested">Interessé</button>
                 </div>

@@ -70,9 +70,9 @@ export default function AddModifyEvent(props) {
                     {/* <input type="file" id="image" /> */}
                     <div>
                         <label className="addmodify-window-element">Description: </label><br />
-                        <textarea id="description" required /><br />
+                        <textarea className="addmodify-window-element" id="description" required /><br />
                     </div>
-                    <button className="create-post-button" type="submit">Valider</button>
+                    <button className="create-post-button addmodify-window-element" type="submit">Valider</button>
                 </form>
             </div>
         </div>

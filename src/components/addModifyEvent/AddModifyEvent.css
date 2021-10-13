@@ -36,10 +36,10 @@
 .addmodify-window form textarea {
     margin-top: 10px;
     height: 150px;
-    width: 100%;
+    width: 50%;
     padding: 20px;
     outline: none;
-    font-size: 1.5rem;
+    font-size: 1rem;
     resize: none;
 }
 
