@@ -16,6 +16,7 @@ export default function AdminValidateUser(props) {
             .then((res) => {
                 console.log("console log de res ligne 17", res);
                 setUsers(res.data.data); // FirstName  - lastName - email - isAdmin - isValidate - userId
+                console.log(res.data.data);
             })
             .catch((err) => {
                 console.log("coté front   ", err);
@@ -32,6 +33,7 @@ export default function AdminValidateUser(props) {
                     {users.map(user =>
                         <UserCardToValidate
                             key={user.userid}
+                            picture={user.picture}
                             firstName={user.firstName}
                             lastName={user.lastName}
                             email={user.email}

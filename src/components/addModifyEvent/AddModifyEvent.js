@@ -1,22 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from "axios";
-import './AddModifyEvent.css'
+import './AddModifyEvent.css';
+
 
 export default function AddModifyEvent(props) {
 
+    const formData = new FormData(); // On crée/rend accessible le formData
+
+    const handleChange = (e) => {
+        formData.append("image", e.target.files[0]);
+        console.log("handlechange", formData);
+    }
+
     const submit = async (e) => {
         e.preventDefault()
-        const createPost = {
-            title: document.getElementById("title").value,
-            education: document.getElementById("education").value,
-            description: document.getElementById("description").value,
-            date: parseInt(document.getElementById("date").value),
-            heure: parseInt(document.getElementById("time").value),
-            duration: parseInt(document.getElementById("duration").value),
-            place: document.getElementById("place").value,
-            // image: document.getElementById("image").value,
-        }
-        await axios.post("http://localhost:8000/event", createPost, { withCredentials: true })
+        formData.append("title", document.getElementById("title").value)
+        formData.append("education", document.getElementById("education").value)
+        formData.append("description", document.getElementById("description").value)
+        formData.append("date", parseInt(document.getElementById("date").value))
+        formData.append("heure", parseInt(document.getElementById("time").value))
+        formData.append("duration", parseInt(document.getElementById("duration").value))
+        formData.append("place", document.getElementById("place").value)
+        console.log("Submit", formData);
+
+        await axios.post("http://localhost:8000/event", formData, { withCredentials: true })
             .then((res) => {
                 console.log(res);
             })
@@ -67,10 +74,12 @@ export default function AddModifyEvent(props) {
                     </div>
 
 
-                    {/* <input type="file" id="image" /> */}
                     <div>
                         <label className="addmodify-window-element">Description: </label><br />
                         <textarea className="addmodify-window-element" id="description" required /><br />
+                    </div>
+                    <div>
+                        <input type="file" onChange={handleChange} />
                     </div>
                     <button className="create-post-button addmodify-window-element" type="submit">Valider</button>
                 </form>
