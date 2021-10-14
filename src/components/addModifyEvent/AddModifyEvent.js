@@ -68,7 +68,7 @@ export default function AddModifyEvent(props) {
                             </div>
                             <div>
                                 <label className="addmodify-window-element">Durée: </label><br />
-                                <input className="addmodify-window-element duration" type="text" id="duration" required /><br />
+                                <input className="addmodify-window-element duration" type="number" id="duration" required /><br />
                             </div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@ export default function AddModifyEvent(props) {
                         <textarea className="addmodify-window-element" id="description" required /><br />
                     </div>
                     <div>
-                        <input type="file" onChange={handleChange} />
+                        <input type="file" onChange={handleChange} required />
                     </div>
                     <button className="create-post-button addmodify-window-element" type="submit">Valider</button>
                 </form>

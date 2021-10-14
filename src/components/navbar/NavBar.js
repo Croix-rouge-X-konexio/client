@@ -51,19 +51,10 @@ export default function NavBar() {
                     </div>
                     
                 )}
-
                 
-                
-            </div>
+                <NavLink exact to="/"><button className="nav-link" onClick={logout}><i class="fas fa-sign-out-alt"></i></button></NavLink>
             
-            <div className="nav-buttons">
-                <NavLink exact to="/">
-                    <button onClick={logout}><i class="fas fa-sign-out-alt"></i></button>
-                </NavLink>
             </div>
         </nav>
-
-
     );
-
 }
