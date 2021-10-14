@@ -27,10 +27,20 @@
     outline: none;
 }
 
+.event-title {
+    width: 100%;
+}
+
 .addmodify-window form select {
     margin-top: 10px;
     padding: 10px;
     outline: none;
+}
+
+
+
+.duration {
+    width: 70%;
 }
 
 .addmodify-window form textarea {

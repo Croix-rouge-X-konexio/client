@@ -34,7 +34,7 @@ export default function AddModifyEvent(props) {
             <div className="addmodify-window">
                 <form onSubmit={submit}>
                     <label className="addmodify-window-element">Titre de l'évenement: </label><br />
-                    <input className="addmodify-window-element" type="text" id="title" required /><br />
+                    <input className="addmodify-window-element event-title" type="text" id="title" required /><br />
                     <div>
                         <div className="rows">
                             <div>
@@ -53,15 +53,15 @@ export default function AddModifyEvent(props) {
                         <div className="rows">
                             <div>
                                 <label className="addmodify-window-element">Date: </label><br />
-                                <input className="addmodify-window-element" type="date" id="date" required /><br />
+                                <input className="addmodify-window-element date" type="date" id="date" required /><br />
                             </div>
                             <div>
                                 <label className="addmodify-window-element">Heure: </label><br />
-                                <input className="addmodify-window-element" type="time" id="time" required /><br />
+                                <input className="addmodify-window-element time" type="time" id="time" required /><br />
                             </div>
                             <div>
-                                <label className="addmodify-window-element">Durée (heure): </label><br />
-                                <input className="addmodify-window-element" type="number" id="duration" required /><br />
+                                <label className="addmodify-window-element">Durée: </label><br />
+                                <input className="addmodify-window-element duration" type="text" id="duration" required /><br />
                             </div>
                         </div>
                     </div>

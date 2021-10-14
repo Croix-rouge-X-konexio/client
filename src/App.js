@@ -50,7 +50,7 @@ export default function App() {
         <Route exact path="/home" component={Home} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/adminvalidateuser" component={AdminValidateUser} />
-        <Route exact path="/UserView/:userId" component={UserView} />
+        <Route exact path="/adminvalidateuser/UserView/:userId" component={UserView} />
       </Switch>
     </BrowserRouter>
   );

@@ -9,6 +9,10 @@
     padding: 50px;
 }
 
+.link-card {
+    text-decoration: none;
+}
+
 .userCardToValidate-userInfo {
     display: flex;
 

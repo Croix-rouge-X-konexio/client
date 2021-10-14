@@ -50,14 +50,6 @@ export default function Home(props) {
         }
     }
 
-    //supprimer en temps reel les posts
-
-    // const handleRemovePost = (e) => {
-    //     const postId = e.target.getAttribute("_id");
-    //     const copyList = [...posts]
-    //     updatePostList(copyList.filter(post => post._id !== postId))
-    // }
-
     const createPostModalCustomStyles = {
         overlay: {
             position: 'fixed',
@@ -149,7 +141,7 @@ export default function Home(props) {
                         ariaHideApp={false} isOpen={toggleCreatePost}
                         style={createPostModalCustomStyles}
                         onRequestClose={() => setToggleCreatePost(false)}>
-                        <button className="close-modal" onClick={handleCreatePost}><i class="fas fa-times-circle"></i></button>
+                        <button className="close-modal" onClick={handleCreatePost}><i class="fas fa-times"></i></button>
                         <AddModifyEvent handleCloseModal={() => setToggleCreatePost(false)} />
                     </Modal>
 
@@ -165,20 +157,9 @@ export default function Home(props) {
 
                         />
                     ).reverse()}
-                    {/* {postList.map(post =>
-                        <PostEvent
-                            key={post.Event._id}
-                            eventId={post.Event._id}
-                            title={post.Event.title}
-                            date={post.Event.date}
-                            place={post.Event.place}
-                            description={post.Event.description}
-                            //handleRemovePost={e=>handleRemovePost(e)} 
-                        />
-                    ).reverse()} */}
+                   
                 </div>
             </div>
-
         </div>
     );
 }

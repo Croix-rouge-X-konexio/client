@@ -50,14 +50,18 @@ export default function UserView() {
             });
     }
 
-    if (users.length < 1) {
-        return (<div>Chargement</div>)
-    } else {
-        return (
-            <div>
-                <NavBar />
-                <div className="adminValidateUser">
-                    <div className="adminValidateUser-users-list">
+    return (
+        <div>
+        <NavBar />
+            <div className="userView">
+            
+                {users.length < 1 ? (
+                <div>
+                Chargement
+                </div>
+            ):(
+                <div className="userView-card">
+                    <div className="userView-text">
                         <h1>Utilisateur</h1>
                         {users[0].user.length < 1 ?
                             (<p>Chargement</p>)
@@ -95,12 +99,14 @@ export default function UserView() {
                         }
 
                     </div>
-                    <div className="userCardToValidate-button">
+                    <div className="userView-button">
                         <button className="reject" onClick={deleteUser}>Supprimer</button>
                         {users[0].user[0].isValidate ? <p></p> : <button className="validate" onClick={validateUser}>Valider</button>}
                     </div>
                 </div>
-            </div>
-        );
-    }
+            )}
+        </div>
+        </div>
+        
+    );
 }

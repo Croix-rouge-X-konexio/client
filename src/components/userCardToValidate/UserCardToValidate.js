@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from "axios";
 import { Link } from "react-router-dom";
 
 import './UserCardToValidate.css'
@@ -7,7 +6,7 @@ import './UserCardToValidate.css'
 export default function UserCardToValidate(props) {
 
     return (
-        <Link to={`/UserView/${props.userid}`}>
+        <Link className="link-card" to={`/adminvalidateuser/UserView/${props.userid}`}>
             <div className="userCardToValidate">
                 <div className="userCardToValidate-userInfo">
                     <div className="userCardToValidate-userInfo-picture">

@@ -7,7 +7,6 @@ import './Register.css'
 // const history = useHistory();
 // history.push("/waitingForValidation");
 
-
 export default function Register() {
     const submit = (e) => {
         e.preventDefault();
@@ -76,15 +75,8 @@ export default function Register() {
         confirmPasswordChecked,
     ]);
 
-
-
-
-
-
     return (
         <div className="register">
-
-
 
             <form onSubmit={submit}>
 
@@ -215,8 +207,6 @@ export default function Register() {
                     <button className="return-login register-element">Se connecter avec un compte existant</button>
                 </Link>
             </form>
-
-
         </div>
     );
 }
