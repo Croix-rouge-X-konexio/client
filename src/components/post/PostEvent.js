@@ -8,6 +8,10 @@ import './Post.css'
 
 export default function PostEvent(props) {
 
+    // const PropsPicture = props.picture;
+    // const pictureName = PropsPicture.substring(0, 55);
+    // console.log(pictureName);
+
     const deleteEvent = async (e) => {
         const eventId = e.target.getAttribute("eventId");
 
@@ -56,7 +60,8 @@ export default function PostEvent(props) {
                     </div>
                 </div>
                 <div>
-                    <img className="post-event-image" src={photo} alt="" />
+                    {/* <p>{props.picture}</p> */}
+                    <img className="post-event-image" alt="Image d'évent" src={`http://localhost:8000/Img/${props.picture}`}></img>
                 </div>
                 <div className="post-event-description">
                     {props.description}

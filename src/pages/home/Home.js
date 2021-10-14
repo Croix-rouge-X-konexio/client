@@ -13,7 +13,6 @@ export default function Home(props) {
     const [toggleFilter, setToggleFilter] = useState(false)
     const [toggleCreatePost, setToggleCreatePost] = useState(false)
     const [posts, setPosts] = useState([]);
-    //const [postList, updatePostList] = useState([])
 
     useEffect(() => {
         console.log("UseEFFECT MARCHE")
@@ -21,8 +20,7 @@ export default function Home(props) {
             .then((res) => {
 
                 console.log("console log de res.data.data   ", res.data.data)
-                setPosts(res.data.data); // push les data dans le state
-                //updatePostList(res.data.data);
+                setPosts(res.data.data);
             })
             .catch((err) => {
                 console.log("coté front   ", err);
@@ -50,14 +48,6 @@ export default function Home(props) {
         }
     }
 
-    //supprimer en temps reel les posts
-
-    // const handleRemovePost = (e) => {
-    //     const postId = e.target.getAttribute("_id");
-    //     const copyList = [...posts]
-    //     updatePostList(copyList.filter(post => post._id !== postId))
-    // }
-
     const createPostModalCustomStyles = {
         overlay: {
             position: 'fixed',
@@ -79,7 +69,7 @@ export default function Home(props) {
         }
     };
     console.log("console log de post   ", posts)
-    //console.log("console log de postList   ", postList)
+
     return (
         <div>
             <NavBar />
@@ -142,7 +132,6 @@ export default function Home(props) {
                                 <button className="create-post" onClick={handleCreatePost}>Créer un évenement</button>
                             </>
                         )}
-
                     </div>
 
                     <Modal
@@ -162,20 +151,9 @@ export default function Home(props) {
                             date={post.Event.date}
                             place={post.Event.place}
                             description={post.Event.description}
-
+                            picture={post.Event.picture}
                         />
                     ).reverse()}
-                    {/* {postList.map(post =>
-                        <PostEvent
-                            key={post.Event._id}
-                            eventId={post.Event._id}
-                            title={post.Event.title}
-                            date={post.Event.date}
-                            place={post.Event.place}
-                            description={post.Event.description}
-                            //handleRemovePost={e=>handleRemovePost(e)} 
-                        />
-                    ).reverse()} */}
                 </div>
             </div>
 

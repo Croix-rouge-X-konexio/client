@@ -9,28 +9,45 @@ import './Register.css'
 
 
 export default function Register() {
+
+
+
+    const [image, setImage] = useState()
+
+    const handleChange = (e) => {
+        setImage(e.target.files[0])
+    }
+
     const submit = (e) => {
         e.preventDefault();
-        const body = {
-            email: document.getElementById("email").value,
-            password: document.getElementById("password").value,
-            firstName: document.getElementById("firstName").value,
-            lastName: document.getElementById("lastName").value,
-            //picture: document.getElementById("email").value,
-            category: document.getElementById("category").value,
-            phoneNumber: document.getElementById("phoneNumber").value,
-            area: document.getElementById("area").value,
-            education: document.getElementById("education").value,
-            school: document.getElementById("school").value,
-            date: document.getElementById("date").value,
-            //doc: document.getElementById("email").value,
-            titleExperience: document.getElementById("titleExperience").value,
-            startingDate: document.getElementById("startingDate").value,
-            endingDate: document.getElementById("endingDate").value,
+
+        const formData = new FormData(); // On crée/rend accessible le formData
+
+        formData.append("image", image);
+        formData.append("email", document.getElementById("email").value)
+        formData.append("password", document.getElementById("password").value)
+        formData.append("firstName", document.getElementById("firstName").value)
+        formData.append("lastName", document.getElementById("lastName").value)
+        formData.append("category", document.getElementById("category").value)
+        formData.append("phoneNumber", parseInt(document.getElementById("phoneNumber").value))
+        formData.append("area", document.getElementById("area").value)
+        formData.append("education", document.getElementById("education").value)
+        formData.append("school", document.getElementById("school").value)
+        formData.append("date", parseInt(document.getElementById("date").value))
+        formData.append("titleExperience", document.getElementById("titleExperience").value)
+        formData.append("startingDate", parseInt(document.getElementById("startingDate").value))
+        formData.append("endingDate", parseInt(document.getElementById("endingDate").value))
+        console.log("Submit");
+
+        for (var value of formData.values()) {
+            console.log(value);
         }
-        axios.post("http://localhost:8000/home/register", body)
+
+        console.log("END Submit");
+
+        axios.post("http://localhost:8000/home/register", formData, { withCredentials: true })
             .then((res) => {
-                // console.log(res);
+                console.log(res);
             })
             .catch((err) => {
                 console.log("coté front   ", err);
@@ -104,6 +121,9 @@ export default function Register() {
 
                 <label>Télephone mobile*: </label>
                 <input className="register-element" type="tel" id="phoneNumber" required />
+
+                <label>Photo de profil: </label>
+                <input type="file" onChange={handleChange} />
 
                 <label>Statut*: </label>
                 <select className="register-element" name="category" id="category" required >

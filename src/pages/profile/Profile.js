@@ -27,6 +27,9 @@ export default function Profile() {
                 <NavBar />
                 <div className="adminValidateUser">
                     <div className="adminValidateUser-users-list">
+
+
+                        <img className="post-event-image" width="300px" height="300px" alt="Photo de profil" src={`http://localhost:8000/Img/${users[0].user[0].picture}`}></img>
                         <h1>Utilisateur</h1>
                         {users[0].user.length < 1 ?
                             (<p>Chargement</p>)
