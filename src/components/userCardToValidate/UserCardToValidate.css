@@ -1,12 +1,12 @@
 .userCardToValidate {
-    margin-top: 50px;
+    margin-top: 20px;
     width: 100%;
-    height: 300px;
+    height: 100%;
     border: solid 1px rgb(197, 197, 197);
     background-color: white;
     color: black;
     border-radius: 10px;
-    padding: 50px;
+    padding: 20px;
 }
 
 .link-card {
@@ -19,15 +19,15 @@
 }
 
 .userCardToValidate-userInfo-picture {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     border: solid 1px rgb(197, 197, 197);
     border-radius: 100px;
 }
 
 .userCardToValidate-userInfo-detail {
     margin-left: 50px;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .userCardToValidate-button {

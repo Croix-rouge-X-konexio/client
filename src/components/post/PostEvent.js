@@ -85,7 +85,7 @@ export default function PostEvent(props) {
                     ):(
                         <div>
                         {user[0].user[0].isAdmin ?(
-                            <button onClick={deleteEvent} eventId={props.eventId} className="post-event-delete">Supprimer l'évenement</button>
+                            <button onClick={deleteEvent} eventId={props.eventId} className="post-event-delete">Supprimer</button>
                             ) : (
                             <>
 

@@ -76,7 +76,7 @@ export default function Home(props) {
             <div className="home">
                 <div className="newsfeed">
                     <div className="newsfeed-button">
-                        {toggleFilter ? (
+                        {/* {toggleFilter ? (
                             <>
                                 <form className="filter-window">
                                     <div className="filter-area">
@@ -131,7 +131,8 @@ export default function Home(props) {
                                 <button className="filter-button" onClick={handleFilter}>Filtre</button>
                                 <button className="create-post" onClick={handleCreatePost}>Créer un évenement</button>
                             </>
-                        )}
+                        )} */}
+                        <button className="create-post" onClick={handleCreatePost}>Créer un évenement</button>
                     </div>
 
                     <Modal

@@ -67,11 +67,89 @@
     margin: 10px;
     padding: 10px;
     border: none;
-    background-color: white;
-    color: red;
+    background-color: red;
+    color: white;
     cursor: pointer;
     text-decoration: none;
     border-radius: 5px;
     font-size: 1rem;
     font-weight: bold;
 }
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .navbar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav-logo {
+        width: 10%;
+        text-decoration: none; 
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .nav-logo button {
+        margin: 0px;
+        display: flex;
+        visibility: collapse;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 3px;
+        background-color: transparent;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    
+    .nav-links {
+        width: 40%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    
+    .nav-link {
+        margin: 10px 5px 10px 5px;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 100px;
+        background-color: transparent;
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 2rem;
+        transition: 0.3s ease-in-out;
+    }
+    
+    .nav-link:hover{
+        transform: scale(1.2);
+    }
+    
+    .active .fas {
+        color: white;
+    }
+    
+    .nav-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .nav-buttons button {
+        margin: 10px;
+        padding: 10px;
+        border: none;
+        background-color: red;
+        color: white;
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+  }
