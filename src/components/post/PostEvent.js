@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import photo from '../../images/img.jpg'
+
 
 import axios from "axios";
 import './Post.css'
 
 
 export default function PostEvent(props) {
+
+    const [user, setUser] = useState([])
+ 
+
+    useEffect(() => {
+        axios.get(`http://localhost:8000/profil`, { withCredentials: true })
+            .then((res) => {
+                setUser(res.data.data);
+            })
+            .catch((err) => {
+                console.log("coté front   ", err);
+            });
+    }, []);
 
     const deleteEvent = async (e) => {
         const eventId = e.target.getAttribute("eventId");
@@ -63,8 +77,21 @@ export default function PostEvent(props) {
                 </div>
                 <div className="post-event-buttons">
                     <div>
-                        <button onClick={deleteEvent} eventId={props.eventId} className="post-event-delete">Supprimer l'évenement</button>
+                    {user.length < 1 ? (
+                    <div>
+                    Chargement
+                    </div>
+                    ):(
+                        <div>
+                        {user[0].user[0].isAdmin ?(
+                            <button onClick={deleteEvent} eventId={props.eventId} className="post-event-delete">Supprimer l'évenement</button>
+                            ) : (
+                            <>
 
+                            </>
+                            )}
+                        </div>
+                    )}
                     </div>
                     <button onClick={isInterested} eventId={props.eventId} className="interested">Interessé</button>
                 </div>

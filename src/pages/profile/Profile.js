@@ -7,7 +7,7 @@ import './Profile.css'
 
 export default function Profile() {
 
-    const [users, setUser] = useState([]);
+    const [user, setUser] = useState([]);
 
     useEffect(() => {
         axios.get(`http://localhost:8000/profil`, { withCredentials: true })
@@ -22,46 +22,46 @@ export default function Profile() {
         return (
             <div>
                 <NavBar />
-                {users.length < 1 ? (
+                {user.length < 1 ? (
                     <div>
                     Chargement
                     </div>
                 ):(
                     <div className="profile">
                         <div className="profile-card">
-                            {users[0].user.length < 1 ?
+                            {user[0].user.length < 1 ?
                                 (<p>Chargement</p>)
                                 :
                                 (<div>
                                     <div>
-                                        {users[0].user[0].firstName}<span> </span>{users[0].user[0].lastName}<br />
-                                        {users[0].user[0].category}
+                                        {user[0].user[0].firstName}<span> </span>{user[0].user[0].lastName}<br />
+                                        {user[0].user[0].category}
                                     </div>
                                     <div>
-                                        <p> email: {users[0].user[0].email}</p>
-                                        <p> Numéro de téléphone: {users[0].user[0].phoneNumber}</p>
-                                        <p> Région: {users[0].user[0].area}</p>
+                                        <p> email: {user[0].user[0].email}</p>
+                                        <p> Numéro de téléphone: {user[0].user[0].phoneNumber}</p>
+                                        <p> Région: {user[0].user[0].area}</p>
                                     </div>
                                 </div>)
                             }
                             <p>Formation Croix-Rouge</p>
-                            {users[0].EducationInfo.length < 1 ?
+                            {user[0].EducationInfo.length < 1 ?
                                 (<p>Chargement</p>)
                                 :
                                 (<div>
-                                    <p> {users[0].EducationInfo[0].EducationId}</p>
-                                    <p> date: {users[0].EducationInfo[0].date}</p>
+                                    <p> {user[0].EducationInfo[0].EducationId}</p>
+                                    <p> date: {user[0].EducationInfo[0].date}</p>
                                 </div>)
                             }
 
                             <p>Expériences professionelles</p>
-                            {users[0].ExperienceInfo.length < 1 ?
+                            {user[0].ExperienceInfo.length < 1 ?
                                 (<p>Chargement</p>)
                                 :
                                 (<div>
-                                    <p> {users[0].ExperienceInfo[0].title}</p>
-                                    <p> date de début: {users[0].ExperienceInfo[0].startingDate}</p>
-                                    <p> date de fin: {users[0].ExperienceInfo[0].endingDate}</p>
+                                    <p> {user[0].ExperienceInfo[0].title}</p>
+                                    <p> date de début: {user[0].ExperienceInfo[0].startingDate}</p>
+                                    <p> date de fin: {user[0].ExperienceInfo[0].endingDate}</p>
                                 </div>)
                             }
                         </div>
