@@ -56,6 +56,10 @@ export default function AddModifyEvent(props) {
                                 <label className="addmodify-window-element">Lieu: </label><br />
                                 <input className="addmodify-window-element" type="text" id="place" required /><br />
                             </div>
+                            <div>
+                                <label className="addmodify-window-element">Image: </label><br />
+                                <input type="file" onChange={handleChange} required />
+                            </div>
                         </div>
                         <div className="rows">
                             <div>
@@ -78,9 +82,7 @@ export default function AddModifyEvent(props) {
                         <label className="addmodify-window-element">Description: </label><br />
                         <textarea className="addmodify-window-element" id="description" required /><br />
                     </div>
-                    <div>
-                        <input type="file" onChange={handleChange} required />
-                    </div>
+                    
                     <button className="create-post-button addmodify-window-element" type="submit">Valider</button>
                 </form>
             </div>
