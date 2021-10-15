@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import userContext from './context/userContext';
+import userContext from './context/userContext'; // ?
 import './App.css';
 
 import Home from './pages/home/Home';
@@ -11,46 +11,37 @@ import WaitingForValidation from './pages/waitingForValidation/WaitingForValidat
 import Profile from './pages/profile/Profile';
 import AdminValidateUser from './pages/adminValidateUser/AdminValidateUser';
 import UserView from "./pages/UserView/UserView";
+import PrivateRoute from './components/PrivateRoute';
+import RestrictedRoute from './components/RestrictedRoute';
 
 export default function App() {
 
-  const RestrictedRoute = (props) => {
-    const isLoggedIn = useContext(userContext)
 
-    return (
-      <>
-        <Route {...props}>
-          {!isLoggedIn ? props.children : <Redirect to="/home" />}
-        </Route>
-      </>
-    )
-
-  }
-
-  const PrivateRoute = (props) => {
-    const isLoggedIn = useContext(userContext)
-
-    return (
-      <>
-        <Route {...props}>
-          {!isLoggedIn ? props.children : <Redirect to="/" />}
-        </Route>
-      </>
-    )
-
-  }
+  //On vérifie (au démarrage) avec le serveur, si l'utilisateur est bien connecté
+  useEffect(() => {
+      console.log("UseEFFECT MARCHE")
+      axios.get(process.env.REACT_APP_API_URL /* + "/event" */, { withCredentials: true }) //determiner le chemin "Faire la route côté Back"
+          .then((res) => {
+              localStorage.setItem("isLogin", res.logStatus); //Mettre le true or false dans la reponse en logStatus: true ou logStatus: false
+          })
+          .catch((err) => {
+              console.log(err);
+          });
+  }, []);
 
   return (
     <BrowserRouter>
       <Switch>
 
-        <Route exact path="/" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/waitingforvalidation" component={WaitingForValidation} />
-        <Route exact path="/home" component={Home} />
-        <Route exact path="/profile" component={Profile} />
-        <Route exact path="/adminvalidateuser" component={AdminValidateUser} />
-        <Route exact path="/adminvalidateuser/UserView/:userId" component={UserView} />
+        <RestrictedRoute exact path="/" component={Login} />
+        <RestrictedRoute exact path="/register" component={Register} />
+        <RestrictedRoute exact path="/waitingforvalidation" component={WaitingForValidation} />
+
+        <PrivateRoute exact path="/home" component={Home} />
+        <PrivateRoute exact path="/profile" component={Profile} />
+        <PrivateRoute exact path="/adminvalidateuser" component={AdminValidateUser} />
+        <PrivateRoute exact path="/adminvalidateuser/UserView/:userId" component={UserView} />
+
       </Switch>
     </BrowserRouter>
   );

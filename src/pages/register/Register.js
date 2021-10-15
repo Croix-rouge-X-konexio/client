@@ -44,7 +44,7 @@ export default function Register() {
 
         console.log("END Submit");
 
-        axios.post("http://localhost:8000/home/register", formData, { withCredentials: true })
+        axios.post(process.env.REACT_APP_API_URL + "/home/register", formData, { withCredentials: true })
             .then((res) => {
                 console.log(res);
             })

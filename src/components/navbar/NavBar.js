@@ -9,7 +9,7 @@ export default function NavBar() {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/profil`, { withCredentials: true })
+        axios.get(process.env.REACT_APP_API_URL + `/profil`, { withCredentials: true })
             .then((res) => {
                 setUser(res.data.data);
             })
@@ -19,7 +19,7 @@ export default function NavBar() {
     }, []);
 
     const logout = () => {
-        axios.get("http://localhost:8000/home", { withCredentials: true })
+        axios.get(process.env.REACT_APP_API_URL + "/home", { withCredentials: true })
             .then((res) => {
                 console.log(res);
             })

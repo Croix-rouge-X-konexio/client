@@ -17,7 +17,7 @@ export default function Login() {
             email: document.getElementById("email").value,
             password: document.getElementById("password").value,
         }
-        await axios.post("http://localhost:8000/home/logIn", loginUser, { withCredentials: true }) //withCredentials => pour indiquer à Axios de passer le Cookie
+        await axios.post(process.env.REACT_APP_API_URL + "/home/logIn", loginUser, { withCredentials: true }) //withCredentials => pour indiquer à Axios de passer le Cookie
             .then((res) => {
                 if (res.data.message === "You are connected") {
                     history.push("/home");

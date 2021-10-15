@@ -13,7 +13,7 @@ export default function UserView() {
     const history = useHistory();
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/list/listUsers/${IdURL.userId}`, { withCredentials: true })
+        axios.get(process.env.REACT_APP_API_URL + `/list/listUsers/${IdURL.userId}`, { withCredentials: true })
             .then((res) => {
                 console.log(res.data.data);
                 setUsers(res.data.data);
@@ -27,7 +27,7 @@ export default function UserView() {
     const deleteUser = async (e) => {
         const idOfUser = IdURL.userId;
         console.log("j'appuie sur delete");
-        await axios.delete(`http://localhost:8000/list/listUsers/${idOfUser}`, { withCredentials: true })
+        await axios.delete(process.env.REACT_APP_API_URL + `/list/listUsers/${idOfUser}`, { withCredentials: true })
             .then((res) => {
                 console.log(res);
                 history.push("/adminvalidateuser");
@@ -40,7 +40,7 @@ export default function UserView() {
     const validateUser = async (e) => {
         const idOfUser = IdURL.userId;
         console.log("Id de la carte sur laquelle JE CLIQUE  =>  ", idOfUser);
-        await axios.patch(`http://localhost:8000/list/listUsers/${idOfUser}`, {}, { withCredentials: true })
+        await axios.patch(process.env.REACT_APP_API_URL + `/list/listUsers/${idOfUser}`, {}, { withCredentials: true })
             .then((res) => {
                 console.log(res);
                 window.location.reload();

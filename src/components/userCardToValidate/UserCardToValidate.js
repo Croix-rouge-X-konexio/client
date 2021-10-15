@@ -10,7 +10,7 @@ export default function UserCardToValidate(props) {
             <div className="userCardToValidate">
                 <div className="userCardToValidate-userInfo">
                     <div className="userCardToValidate-userInfo-picture">
-                        <img width="100px" height="100px" alt="" src={`http://localhost:8000/Img/${props.userid}`}></img>
+                        <img width="100px" height="100px" alt="" src={process.env.REACT_APP_API_URL + `/Img/${props.userid}`}></img>
                     </div>
                     <div className="userCardToValidate-userInfo-detail">
                         <div className="userCardToValidate-userInfo-detail-name">

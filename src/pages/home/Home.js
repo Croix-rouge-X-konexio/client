@@ -18,7 +18,7 @@ export default function Home(props) {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/profil`, { withCredentials: true })
+        axios.get(`process.env.REACT_APP_API_URL + "/profil`, { withCredentials: true })
             .then((res) => {
                 setUser(res.data.data);
             })
@@ -29,7 +29,7 @@ export default function Home(props) {
 
     useEffect(() => {
         console.log("UseEFFECT MARCHE")
-        axios.get("http://localhost:8000/event", { withCredentials: true })
+        axios.get(process.env.REACT_APP_API_URL + "/event", { withCredentials: true })
             .then((res) => {
 
                 console.log("console log de res.data.data   ", res.data.data)
