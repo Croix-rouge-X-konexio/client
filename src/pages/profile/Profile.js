@@ -29,16 +29,20 @@ export default function Profile() {
                 ):(
                     <div className="profile">
                         <div>
-                            <img className="post-event-image" width="300px" height="300px" alt="" src={`http://localhost:8000/Img/${user[0].user[0].picture}`}></img>
+                            
                             {user[0].user.length < 1 ?
                                 (<p>Chargement</p>)
                                 :
                                 (<div className="profile-card">
+                                    <div className="profile-pic">
+                                    <img className="post-event-image" alt="" src={`http://localhost:8000/Img/${user[0].user[0].picture}`} />
+                                    </div>
                                     <p className="title">Informations</p>
                                     <div className="profile-elements">
                                         {user[0].user[0].firstName}<span> </span>{user[0].user[0].lastName}<br />
                                         {user[0].user[0].category}
                                     </div>
+                                    
                                     <div className="profile-elements">
                                         <p> email: {user[0].user[0].email}</p>
                                         <p> Numéro de téléphone: {user[0].user[0].phoneNumber}</p>
