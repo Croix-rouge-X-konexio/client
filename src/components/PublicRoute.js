@@ -1,22 +1,23 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-const PrivateRoute = ({component: Component, ...rest}) => {
+const PublicRoute = ({component: Component, ...rest}) => {
 
-    let isLogin = false
+    let isNotLogin = true
     if (localStorage.getItem('isLogin') === true || localStorage.getItem('isLogin') === "true") {
-        isLogin = true
+        isNotLogin = false
     }
-    console.log(isLogin)
+    console.log(isNotLogin)
 
     return (
         <Route {...rest} render={props => (
-            isLogin ?
-                <Component {...props} />
+            isNotLogin ?
+                <Component {...props} />    
             : 
-                <Redirect to="/" />
+                <Redirect to="/home" />
         )} />
     );
 };
 
-export default PrivateRoute;
+
+export default PublicRoute;

@@ -17,9 +17,11 @@ export default function Login() {
             email: document.getElementById("email").value,
             password: document.getElementById("password").value,
         }
+        console.log(process.env.REACT_APP_API_URL + "/home/logIn")
         await axios.post(process.env.REACT_APP_API_URL + "/home/logIn", loginUser, { withCredentials: true }) //withCredentials => pour indiquer à Axios de passer le Cookie
             .then((res) => {
                 if (res.data.message === "You are connected") {
+                    localStorage.setItem("isLogin", "true");
                     history.push("/home");
                 }
                 else if (res.data.message === "Account waiting for validation") {

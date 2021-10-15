@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
+import axios from "axios";
 import userContext from './context/userContext'; // ?
 import './App.css';
 
@@ -12,39 +12,46 @@ import Profile from './pages/profile/Profile';
 import AdminValidateUser from './pages/adminValidateUser/AdminValidateUser';
 import UserView from "./pages/UserView/UserView";
 import PrivateRoute from './components/PrivateRoute';
-import RestrictedRoute from './components/RestrictedRoute';
+import PublicRoute from './components/PublicRoute';
+
 
 export default function App() {
 
+  const [isLogIn, setisLogIn] = useState(false)
 
   //On vérifie (au démarrage) avec le serveur, si l'utilisateur est bien connecté
   useEffect(() => {
       console.log("UseEFFECT MARCHE")
-      axios.get(process.env.REACT_APP_API_URL /* + "/event" */, { withCredentials: true }) //determiner le chemin "Faire la route côté Back"
+      axios.get(process.env.REACT_APP_API_URL + "/home/logIn", { withCredentials: true })
           .then((res) => {
-              localStorage.setItem("isLogin", res.logStatus); //Mettre le true or false dans la reponse en logStatus: true ou logStatus: false
+            localStorage.setItem("isLogin", res.data.logStatus);
+            setisLogIn("true")
+            console.log(res.data.logStatus)
           })
           .catch((err) => {
               console.log(err);
           });
   }, []);
+ 
+    return (
+      isLogIn ? (
+        <BrowserRouter>
+          <Switch>
 
-  return (
-    <BrowserRouter>
-      <Switch>
+            <PublicRoute exact path="/" component={Login} />
+            <PublicRoute exact path="/register" component={Register} />
+            <PublicRoute exact path="/waitingforvalidation" component={WaitingForValidation} />
 
-        <RestrictedRoute exact path="/" component={Login} />
-        <RestrictedRoute exact path="/register" component={Register} />
-        <RestrictedRoute exact path="/waitingforvalidation" component={WaitingForValidation} />
+            <PrivateRoute exact path="/home" component={Home} />
+            <PrivateRoute exact path="/profile" component={Profile} />
+            <PrivateRoute exact path="/adminvalidateuser" component={AdminValidateUser} />
+            <PrivateRoute exact path="/adminvalidateuser/UserView/:userId" component={UserView} />
 
-        <PrivateRoute exact path="/home" component={Home} />
-        <PrivateRoute exact path="/profile" component={Profile} />
-        <PrivateRoute exact path="/adminvalidateuser" component={AdminValidateUser} />
-        <PrivateRoute exact path="/adminvalidateuser/UserView/:userId" component={UserView} />
+          </Switch>
+        </BrowserRouter>
+      ) : (
+        <div>Chargement</div>
+      )
+    )
 
-      </Switch>
-    </BrowserRouter>
-  );
 }
-
-
