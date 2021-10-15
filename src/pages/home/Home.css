@@ -124,7 +124,10 @@
         
     }
     .Modal {
+        display: flex;
+        flex-direction: column;
         position: absolute;
+        align-items: center;
         height: 70%;
         width: 100%;
         top: 50%;
@@ -132,11 +135,27 @@
         right: 50%;
         bottom: 0%;
         margin-top: 0px;
-        margin-right: -100%;
+        
         transform: translate(-50%, -50%);
         border-radius: 0px;
         background-color: white;
+        
         padding: 0px;
+        padding-top: 10px;
         z-index: 10;
+    }
+    .modal-button-position {
+        background-color: blue;
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+    .close-modal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        
     }
   }
