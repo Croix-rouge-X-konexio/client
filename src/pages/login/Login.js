@@ -22,6 +22,9 @@ export default function Login() {
                 if (res.data.message === "You are connected") {
                     history.push("/home");
                 }
+                else if (res.data.message === "Account waiting for validation") {
+                    history.push("/waitingforvalidation");
+                }
                 else {
                     alert("Invalid email or password");
                 }

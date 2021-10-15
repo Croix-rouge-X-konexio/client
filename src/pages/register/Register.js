@@ -9,7 +9,7 @@ import './Register.css'
 
 export default function Register() {
 
-
+    const history = useHistory()
 
     const [image, setImage] = useState()
 
@@ -51,6 +51,7 @@ export default function Register() {
             .catch((err) => {
                 console.log("coté front   ", err);
             });
+            history.push("/waitingforvalidation");
     };
 
     const [password, setPassword] = useState("")
