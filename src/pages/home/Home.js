@@ -13,7 +13,7 @@ export default function Home(props) {
     const [toggleFilter, setToggleFilter] = useState(false)
     const [toggleCreatePost, setToggleCreatePost] = useState(false)
     const [posts, setPosts] = useState([]);
-    
+
     const [user, setUser] = useState([])
 
 
@@ -69,7 +69,7 @@ export default function Home(props) {
             <div className="home">
                 <div className="newsfeed">
                     <div className="newsfeed-button">
-                        {/* {toggleFilter ? (
+                        {toggleFilter ? (
                             <>
                                 <form className="filter-window">
                                     <div className="filter-area">
@@ -121,25 +121,24 @@ export default function Home(props) {
                             </>
                         ) : (
                             <>
-                                <button className="filter-button" onClick={handleFilter}>Filtre</button>
                                 <button className="create-post" onClick={handleCreatePost}>Créer un évenement</button>
                             </>
-                        )} */}
-                        {user.length < 1 ? (
-                        <div>
-                        Chargement
-                        </div>
-                        ):(
+                        )}
+                        {/* {user.length < 1 ? (
                             <div>
-                            {user[0].user[0].isAdmin ?(
-                                <button className="create-post" onClick={handleCreatePost}>Créer un évenement</button>
+                                Chargement
+                            </div>
+                        ) : (
+                            <div>
+                                {user[0].user[0].isAdmin ? (
+                                    <button className="create-post" onClick={handleCreatePost}>Créer un évenement</button>
                                 ) : (
-                                <>
+                                    <>
 
-                                </>
+                                    </>
                                 )}
                             </div>
-                        )}
+                        )} */}
                     </div>
 
                     <Modal
@@ -147,9 +146,9 @@ export default function Home(props) {
                         overlayClassName="Overlay"
                         ariaHideApp={false} isOpen={toggleCreatePost}
                         onRequestClose={() => setToggleCreatePost(false)}>
-                        
+
                         <button className="close-modal" onClick={handleCreatePost}><i class="fas fa-times"></i></button>
-                        
+
                         <AddModifyEvent handleCloseModal={() => setToggleCreatePost(false)} />
                     </Modal>
 
@@ -165,7 +164,7 @@ export default function Home(props) {
                             picture={post.Event.picture}
                         />
                     ).reverse()}
-                   
+
                 </div>
             </div>
         </div>
