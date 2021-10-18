@@ -31,9 +31,7 @@
 .nav-links {
     width: 40%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    
+    justify-content: flex-end;
 }
 
 .nav-link {
@@ -57,21 +55,49 @@
     color: white;
 }
 
-.nav-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .navbar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-.nav-buttons button {
-    margin: 10px;
-    padding: 10px;
-    border: none;
-    background-color: white;
-    color: red;
-    cursor: pointer;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: bold;
-}
+    .nav-logo {
+        visibility: collapse;
+        width: 10%;
+        text-decoration: none; 
+        justify-content: start;
+        align-items: center;
+    }
+
+    .nav-links {
+        width: 40%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    
+    .nav-link {
+        margin: 10px 5px 10px 5px;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 100px;
+        background-color: transparent;
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 2rem;
+        transition: 0.3s ease-in-out;
+    }
+    
+    .nav-link:hover{
+        transform: scale(1.2);
+    }
+    
+    .active .fas {
+        color: white;
+    }
+    
+  }

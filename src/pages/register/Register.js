@@ -7,10 +7,9 @@ import './Register.css'
 // const history = useHistory();
 // history.push("/waitingForValidation");
 
-
 export default function Register() {
 
-
+    const history = useHistory()
 
     const [image, setImage] = useState()
 
@@ -45,13 +44,14 @@ export default function Register() {
 
         console.log("END Submit");
 
-        axios.post("http://localhost:8000/home/register", formData, { withCredentials: true })
+        axios.post(process.env.REACT_APP_API_URL + "/home/register", formData, { withCredentials: true })
             .then((res) => {
                 console.log(res);
             })
             .catch((err) => {
                 console.log("coté front   ", err);
             });
+            history.push("/waitingforvalidation");
     };
 
     const [password, setPassword] = useState("")
@@ -93,39 +93,32 @@ export default function Register() {
         confirmPasswordChecked,
     ]);
 
-
-
-
-
-
     return (
         <div className="register">
 
-
-
             <form onSubmit={submit}>
 
-                <h2>Crééz votre compte</h2>
+                <h2 className="label">Créez votre compte</h2>
 
                 {/* <label>Photo de profil: </label>
                 <input type="image" id="picture" alt="" /> */}
 
-                <label>Prénom*: </label>
+                <label className="label">Prénom*: </label>
                 <input className="register-element" type="text" id="firstName" required />
 
-                <label>Nom*: </label>
+                <label className="label">Nom*: </label>
                 <input className="register-element" type="text" id="lastName" required />
 
-                <label>Email*: </label>
+                <label className="label">Email*: </label>
                 <input className="register-element" type="email" id="email" required />
 
-                <label>Télephone mobile*: </label>
+                <label className="label">Télephone mobile*: </label>
                 <input className="register-element" type="tel" id="phoneNumber" required />
 
-                <label>Photo de profil: </label>
+                <label className="label">Photo de profil: </label>
                 <input type="file" onChange={handleChange} />
 
-                <label>Statut*: </label>
+                <label className="label">Statut*: </label>
                 <select className="register-element" name="category" id="category" required >
                     <option value="Etudiant">Etudiant</option>
                     <option value="Apprenti">Apprenti</option>
@@ -133,7 +126,7 @@ export default function Register() {
                     <option value="Alumni apprenti">Alumni apprenti</option>
                 </select>
 
-                <label>Région*: </label>
+                <label className="label">Région*: </label>
                 <select className="register-element" name="area" id="area" required >
                     <option value="Auvergne-Rhône-Alpe">Auvergne-Rhône-Alpes</option>
                     <option value="Bourgogne-Franche-Compté">Bourgogne-Franche-Compté</option>
@@ -149,21 +142,21 @@ export default function Register() {
                     <option value="Provence-Alpes-Côte d'Azur">Provence-Alpes-Côte d'Azur</option>
                 </select>
 
-                <label>Formation*: </label>
+                <label className="label">Formation*: </label>
                 <select className="register-element" name="education" id="education" required >
                     <option value="Ambulancier">Ambulancier</option>
                     <option value="Brancardier">Brancardier</option>
                     <option value="Infirmier">Infirmier</option>
                 </select>
 
-                <label>Institut*: </label>
+                <label className="label">Institut*: </label>
                 <select className="register-element" name="school" id="school" required >
                     <option value="Paris">Paris</option>
                     <option value="Bordeaux">Bordeaux</option>
                     <option value="Toulouse">Toulouse</option>
                 </select>
 
-                <label>Année de formation*: </label>
+                <label className="label">Année de formation*: </label>
                 <select className="register-element" name="date" id="date" required >
                     <option value="2021">2021</option>
                     <option value="2020">2020</option>
@@ -173,10 +166,10 @@ export default function Register() {
                 {/* <label>Attestation de formation: </label>
                 <input type="file" /> */}
 
-                <label>Dernier poste occupé: </label>
+                <label className="label">Dernier poste occupé: </label>
                 <input className="register-element" type="text" id="titleExperience" />
 
-                <label>Date de début: </label>
+                <label className="label">Date de début: </label>
                 <select className="register-element" name="startingDate" id="startingDate" >
                     <option value="2021">2021</option>
                     <option value="2020">2020</option>
@@ -184,7 +177,7 @@ export default function Register() {
                     <option value="2018">2018</option>
                 </select>
 
-                <label>Date de fin: </label>
+                <label className="label">Date de fin: </label>
                 <select className="register-element" name="endingDate" id="endingDate" >
                     <option value="En cours">En cours</option>
                     <option value="2021">2021</option>
@@ -192,7 +185,7 @@ export default function Register() {
                     <option value="2019">2019</option>
                 </select>
 
-                <label>Mot de passe*: </label>
+                <label className="label">Mot de passe*: </label>
                 {passwordChecked ?
                     (
                         <>
@@ -200,7 +193,7 @@ export default function Register() {
                         </>
                     ) : (
                         <>
-                            Le mot de passe doit faire au moins 8 caractères
+                            <p className="label">Le mot de passe doit faire au moins 8 caractères</p>
                         </>
                     )
                 }
@@ -212,7 +205,7 @@ export default function Register() {
                         </>
                     ) : (
                         <>
-                            Le mot de passe ne correspond pas
+                            <p className="label">Le mot de passe ne correspond pas</p>
                         </>
                     )
                 }
@@ -235,8 +228,6 @@ export default function Register() {
                     <button className="return-login register-element">Se connecter avec un compte existant</button>
                 </Link>
             </form>
-
-
         </div>
     );
 }

@@ -13,7 +13,7 @@ export default function UserView() {
     const history = useHistory();
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/list/listUsers/${IdURL.userId}`, { withCredentials: true })
+        axios.get(process.env.REACT_APP_API_URL + `/list/listUsers/${IdURL.userId}`, { withCredentials: true })
             .then((res) => {
                 console.log(res.data.data);
                 setUsers(res.data.data);
@@ -27,7 +27,7 @@ export default function UserView() {
     const deleteUser = async (e) => {
         const idOfUser = IdURL.userId;
         console.log("j'appuie sur delete");
-        await axios.delete(`http://localhost:8000/list/listUsers/${idOfUser}`, { withCredentials: true })
+        await axios.delete(process.env.REACT_APP_API_URL + `/list/listUsers/${idOfUser}`, { withCredentials: true })
             .then((res) => {
                 console.log(res);
                 history.push("/adminvalidateuser");
@@ -40,7 +40,7 @@ export default function UserView() {
     const validateUser = async (e) => {
         const idOfUser = IdURL.userId;
         console.log("Id de la carte sur laquelle JE CLIQUE  =>  ", idOfUser);
-        await axios.patch(`http://localhost:8000/list/listUsers/${idOfUser}`, {}, { withCredentials: true })
+        await axios.patch(process.env.REACT_APP_API_URL + `/list/listUsers/${idOfUser}`, {}, { withCredentials: true })
             .then((res) => {
                 console.log(res);
                 window.location.reload();
@@ -50,14 +50,18 @@ export default function UserView() {
             });
     }
 
-    if (users.length < 1) {
-        return (<div>Chargement</div>)
-    } else {
-        return (
-            <div>
-                <NavBar />
-                <div className="adminValidateUser">
-                    <div className="adminValidateUser-users-list">
+    return (
+        <div>
+        <NavBar />
+            <div className="userView">
+            
+                {users.length < 1 ? (
+                <div>
+                Chargement
+                </div>
+            ):(
+                <div className="userView-card">
+                    <div className="userView-text">
                         <h1>Utilisateur</h1>
                         {users[0].user.length < 1 ?
                             (<p>Chargement</p>)
@@ -95,12 +99,14 @@ export default function UserView() {
                         }
 
                     </div>
-                    <div className="userCardToValidate-button">
+                    <div className="userView-button">
                         <button className="reject" onClick={deleteUser}>Supprimer</button>
                         {users[0].user[0].isValidate ? <p></p> : <button className="validate" onClick={validateUser}>Valider</button>}
                     </div>
                 </div>
-            </div>
-        );
-    }
+            )}
+        </div>
+        </div>
+        
+    );
 }

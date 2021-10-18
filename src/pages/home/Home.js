@@ -13,10 +13,23 @@ export default function Home(props) {
     const [toggleFilter, setToggleFilter] = useState(false)
     const [toggleCreatePost, setToggleCreatePost] = useState(false)
     const [posts, setPosts] = useState([]);
+    
+    const [user, setUser] = useState([])
+
+
+    useEffect(() => {
+        axios.get(`process.env.REACT_APP_API_URL + "/profil`, { withCredentials: true })
+            .then((res) => {
+                setUser(res.data.data);
+            })
+            .catch((err) => {
+                console.log("coté front   ", err);
+            });
+    }, []);
 
     useEffect(() => {
         console.log("UseEFFECT MARCHE")
-        axios.get("http://localhost:8000/event", { withCredentials: true })
+        axios.get(process.env.REACT_APP_API_URL + "/event", { withCredentials: true })
             .then((res) => {
 
                 console.log("console log de res.data.data   ", res.data.data)
@@ -48,26 +61,6 @@ export default function Home(props) {
         }
     }
 
-    const createPostModalCustomStyles = {
-        overlay: {
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.5)'
-        },
-        content: {
-            height: '70%',
-            top: '50%',
-            left: '50%',
-            right: '50%',
-            bottom: '0%',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
-            borderRadius: '10px',
-        }
-    };
     console.log("console log de post   ", posts)
 
     return (
@@ -76,7 +69,7 @@ export default function Home(props) {
             <div className="home">
                 <div className="newsfeed">
                     <div className="newsfeed-button">
-                        {toggleFilter ? (
+                        {/* {toggleFilter ? (
                             <>
                                 <form className="filter-window">
                                     <div className="filter-area">
@@ -131,14 +124,32 @@ export default function Home(props) {
                                 <button className="filter-button" onClick={handleFilter}>Filtre</button>
                                 <button className="create-post" onClick={handleCreatePost}>Créer un évenement</button>
                             </>
+                        )} */}
+                        {user.length < 1 ? (
+                        <div>
+                        Chargement
+                        </div>
+                        ):(
+                            <div>
+                            {user[0].user[0].isAdmin ?(
+                                <button className="create-post" onClick={handleCreatePost}>Créer un évenement</button>
+                                ) : (
+                                <>
+
+                                </>
+                                )}
+                            </div>
                         )}
                     </div>
 
                     <Modal
+                        className="Modal"
+                        overlayClassName="Overlay"
                         ariaHideApp={false} isOpen={toggleCreatePost}
-                        style={createPostModalCustomStyles}
                         onRequestClose={() => setToggleCreatePost(false)}>
-                        <button className="close-modal" onClick={handleCreatePost}><i class="fas fa-times-circle"></i></button>
+                        
+                        <button className="close-modal" onClick={handleCreatePost}><i class="fas fa-times"></i></button>
+                        
                         <AddModifyEvent handleCloseModal={() => setToggleCreatePost(false)} />
                     </Modal>
 
@@ -154,9 +165,9 @@ export default function Home(props) {
                             picture={post.Event.picture}
                         />
                     ).reverse()}
+                   
                 </div>
             </div>
-
         </div>
     );
 }

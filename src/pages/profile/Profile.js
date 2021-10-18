@@ -7,10 +7,10 @@ import './Profile.css'
 
 export default function Profile() {
 
-    const [users, setUser] = useState([]);
+    const [user, setUser] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/profil`, { withCredentials: true })
+        axios.get(process.env.REACT_APP_API_URL + `/profil`, { withCredentials: true })
             .then((res) => {
                 setUser(res.data.data);
             })
@@ -19,54 +19,62 @@ export default function Profile() {
             });
     }, []);
 
-    if (users.length < 1) {
-        return (<div>Chargement</div>)
-    } else {
         return (
             <div>
                 <NavBar />
-                <div className="adminValidateUser">
-                    <div className="adminValidateUser-users-list">
-
-
-                        <img className="post-event-image" width="300px" height="300px" alt="Photo de profil" src={`http://localhost:8000/Img/${users[0].user[0].picture}`}></img>
-                        <h1>Utilisateur</h1>
-                        {users[0].user.length < 1 ?
-                            (<p>Chargement</p>)
-                            :
-                            (<div>
-                                <p> Prénom: {users[0].user[0].firstName}</p>
-                                <p> Nom de famille: {users[0].user[0].lastName}</p>
-                                <p> email: {users[0].user[0].email}</p>
-                                <p> statut: {users[0].user[0].isAdmin ? "Admin" : "RC-User"}</p>
-                                <p> Numéro de téléphone: {users[0].user[0].phoneNumber}</p>
-                                <p> Lieu: {users[0].user[0].area}</p>
-                                <p> Profil: {users[0].user[0].category}</p>
-                            </div>)
-                        }
-                        <h1>Formation</h1>
-                        {users[0].EducationInfo.length < 1 ?
-                            (<p>Chargement</p>)
-                            :
-                            (<div>
-                                <p> nom de formation: {users[0].EducationInfo[0].EducationId}</p>
-                                <p> date: {users[0].EducationInfo[0].date}</p>
-                            </div>)
-                        }
-
-                        <h1>Expériences</h1>
-                        {users[0].ExperienceInfo.length < 1 ?
-                            (<p>Chargement</p>)
-                            :
-                            (<div>
-                                <p> titre de jobs: {users[0].ExperienceInfo[0].title}</p>
-                                <p> date de début: {users[0].ExperienceInfo[0].startingDate}</p>
-                                <p> date de fin: {users[0].ExperienceInfo[0].endingDate}</p>
-                            </div>)
-                        }
+                {user.length < 1 ? (
+                    <div>
+                    Chargement
                     </div>
-                </div>
+                ):(
+                    <div className="profile">
+                        <div>
+                            <img className="post-event-image" width="300px" height="300px" alt="" src={process.env.REACT_APP_API_URL + `/Img/${user[0].user[0].picture}`}></img>
+                            {user[0].user.length < 1 ?
+                                (<p>Chargement</p>)
+                                :
+                                (<div className="profile-card">
+                                    <div className="profile-pic">
+                                    <img className="post-event-image" alt="" src={`http://localhost:8000/Img/${user[0].user[0].picture}`} />
+                                    </div>
+                                    <p className="title">Informations</p>
+                                    <div className="profile-elements">
+                                        {user[0].user[0].firstName}<span> </span>{user[0].user[0].lastName}<br />
+                                        {user[0].user[0].category}
+                                    </div>
+                                    
+                                    <div className="profile-elements">
+                                        <p> email: {user[0].user[0].email}</p>
+                                        <p> Numéro de téléphone: {user[0].user[0].phoneNumber}</p>
+                                        <p> Région: {user[0].user[0].area}</p>
+                                    </div>
+                                </div>)
+                            }
+                            
+                            {user[0].EducationInfo.length < 1 ?
+                                (<p>Chargement</p>)
+                                :
+                                (<div className="profile-elements profile-card">
+                                    <p className="title">Formation Croix-Rouge</p>
+                                    <p> {user[0].EducationInfo[0].EducationId}</p>
+                                    <p> date: {user[0].EducationInfo[0].date}</p>
+                                </div>)
+                            }
+
+                            
+                            {user[0].ExperienceInfo.length < 1 ?
+                                (<p>Chargement</p>)
+                                :
+                                (<div className="profile-elements profile-card">
+                                    <p className="title">Expériences professionelles</p>
+                                    <p> {user[0].ExperienceInfo[0].title}</p>
+                                    <p> date de début: {user[0].ExperienceInfo[0].startingDate}</p>
+                                    <p> date de fin: {user[0].ExperienceInfo[0].endingDate}</p>
+                                </div>)
+                            }
+                        </div>
+                    </div>
+                )}   
             </div>
         );
-    }
 }

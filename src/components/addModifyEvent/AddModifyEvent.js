@@ -23,7 +23,7 @@ export default function AddModifyEvent(props) {
         formData.append("place", document.getElementById("place").value)
         console.log("Submit", formData);
 
-        await axios.post("http://localhost:8000/event", formData, { withCredentials: true })
+        await axios.post(process.env.REACT_APP_API_URL + "/event", formData, { withCredentials: true })
             .then((res) => {
                 console.log(res);
             })
@@ -41,7 +41,7 @@ export default function AddModifyEvent(props) {
             <div className="addmodify-window">
                 <form onSubmit={submit}>
                     <label className="addmodify-window-element">Titre de l'évenement: </label><br />
-                    <input className="addmodify-window-element" type="text" id="title" required /><br />
+                    <input className="addmodify-window-element event-title" type="text" id="title" required /><br />
                     <div>
                         <div className="rows">
                             <div>
@@ -56,19 +56,23 @@ export default function AddModifyEvent(props) {
                                 <label className="addmodify-window-element">Lieu: </label><br />
                                 <input className="addmodify-window-element" type="text" id="place" required /><br />
                             </div>
+                            <div>
+                                <label className="addmodify-window-element">Image: </label><br />
+                                <input type="file" onChange={handleChange} required />
+                            </div>
                         </div>
                         <div className="rows">
                             <div>
                                 <label className="addmodify-window-element">Date: </label><br />
-                                <input className="addmodify-window-element" type="date" id="date" required /><br />
+                                <input className="addmodify-window-element date" type="date" id="date" required /><br />
                             </div>
                             <div>
                                 <label className="addmodify-window-element">Heure: </label><br />
-                                <input className="addmodify-window-element" type="time" id="time" required /><br />
+                                <input className="addmodify-window-element time" type="time" id="time" required /><br />
                             </div>
                             <div>
-                                <label className="addmodify-window-element">Durée (heure): </label><br />
-                                <input className="addmodify-window-element" type="number" id="duration" required /><br />
+                                <label className="addmodify-window-element">Durée: </label><br />
+                                <input className="addmodify-window-element duration" type="number" id="duration" required /><br />
                             </div>
                         </div>
                     </div>
@@ -78,9 +82,7 @@ export default function AddModifyEvent(props) {
                         <label className="addmodify-window-element">Description: </label><br />
                         <textarea className="addmodify-window-element" id="description" required /><br />
                     </div>
-                    <div>
-                        <input type="file" onChange={handleChange} />
-                    </div>
+                    
                     <button className="create-post-button addmodify-window-element" type="submit">Valider</button>
                 </form>
             </div>

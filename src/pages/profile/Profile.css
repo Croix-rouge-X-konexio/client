@@ -4,7 +4,9 @@
     position: absolute;
     margin-top: 100px;
     justify-content: center;
-    margin: 100px;
+    align-items: center;
+    margin-top: 100px;
+    width: 100%;
 }
 
 .profile-card {
@@ -14,6 +16,25 @@
     border-radius: 10px;
     font-size: 1.5rem;
     background-color: white;
+    font-size: 0.8rem;
+}
+
+.profile-pic {
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-pic img {
+    border-radius: 100px;
+    width: 100px;
+    height: 100px;
+}
+
+.title {
+    font-size: 1.2rem;
 }
 
 .profile-picture {
@@ -21,4 +42,9 @@
     height: 200px;
     border: solid 1px grey;
     border-radius: 100px;
+}
+
+.profile-elements {
+    margin-bottom: 10px;
+    
 }

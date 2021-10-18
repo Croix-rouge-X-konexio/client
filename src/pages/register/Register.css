@@ -48,3 +48,20 @@
 }
 
 
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .register-element {
+        margin: 10px 0;
+        width: 300%;
+    }
+    .label {
+        width: 300%;
+        margin-top: 10px;
+    }
+    .return-login {
+        display: flex;
+        position: relative;
+        left: -100%;
+    }
+  }
