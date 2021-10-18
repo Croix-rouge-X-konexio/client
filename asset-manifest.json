@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/Croix-Rouge/static/css/main.5ec90bc3.chunk.css",
+    "main.css": "/Croix-Rouge/static/css/main.de5be9c1.chunk.css",
     "main.js": "/Croix-Rouge/static/js/main.57a699ae.chunk.js",
     "main.js.map": "/Croix-Rouge/static/js/main.57a699ae.chunk.js.map",
     "runtime-main.js": "/Croix-Rouge/static/js/runtime-main.7353a105.js",
@@ -8,13 +8,13 @@
     "static/js/2.65a470cf.chunk.js": "/Croix-Rouge/static/js/2.65a470cf.chunk.js",
     "static/js/2.65a470cf.chunk.js.map": "/Croix-Rouge/static/js/2.65a470cf.chunk.js.map",
     "index.html": "/Croix-Rouge/index.html",
-    "static/css/main.5ec90bc3.chunk.css.map": "/Croix-Rouge/static/css/main.5ec90bc3.chunk.css.map",
+    "static/css/main.de5be9c1.chunk.css.map": "/Croix-Rouge/static/css/main.de5be9c1.chunk.css.map",
     "static/js/2.65a470cf.chunk.js.LICENSE.txt": "/Croix-Rouge/static/js/2.65a470cf.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.7353a105.js",
     "static/js/2.65a470cf.chunk.js",
-    "static/css/main.5ec90bc3.chunk.css",
+    "static/css/main.de5be9c1.chunk.css",
     "static/js/main.57a699ae.chunk.js"
   ]
 }
