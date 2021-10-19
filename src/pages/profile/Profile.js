@@ -10,7 +10,7 @@ export default function Profile() {
     const [user, setUser] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/profil`, { withCredentials: true })
+        axios.get(process.env.REACT_APP_API_URL + `/profil`, { withCredentials: true })
             .then((res) => {
                 setUser(res.data.data);
             })
@@ -29,7 +29,7 @@ export default function Profile() {
                 ):(
                     <div className="profile">
                         <div>
-                            
+                            <img className="post-event-image" width="300px" height="300px" alt="" src={process.env.REACT_APP_API_URL + `/Img/${user[0].user[0].picture}`}></img>
                             {user[0].user.length < 1 ?
                                 (<p>Chargement</p>)
                                 :

@@ -12,7 +12,7 @@ export default function AdminValidateUser(props) {
     const [users, setUsers] = useState([])
 
     useEffect(() => {
-        axios.get("http://localhost:8000/list/listUsers", { withCredentials: true })
+        axios.get(process.env.REACT_APP_API_URL + "/list/listUsers", { withCredentials: true })
             .then((res) => {
                 console.log("console log de res ligne 17", res);
                 setUsers(res.data.data); // FirstName  - lastName - email - isAdmin - isValidate - userId

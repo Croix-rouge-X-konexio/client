@@ -23,7 +23,7 @@ export default function AddModifyEvent(props) {
         formData.append("place", document.getElementById("place").value)
         console.log("Submit", formData);
 
-        await axios.post("http://localhost:8000/event", formData, { withCredentials: true })
+        await axios.post(process.env.REACT_APP_API_URL + "/event", formData, { withCredentials: true })
             .then((res) => {
                 console.log(res);
             })

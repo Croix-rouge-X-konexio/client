@@ -10,7 +10,7 @@ export default function PostEvent(props) {
  
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/profil`, { withCredentials: true })
+        axios.get(process.env.REACT_APP_API_URL + `/profil`, { withCredentials: true })
             .then((res) => {
                 setUser(res.data.data);
             })
@@ -25,7 +25,7 @@ export default function PostEvent(props) {
     const deleteEvent = async (e) => {
         const eventId = e.target.getAttribute("eventId");
 
-        await axios.delete(`http://localhost:8000/event/${eventId}`, { withCredentials: true })
+        await axios.delete(process.env.REACT_APP_API_URL + `/event/${eventId}`, { withCredentials: true })
             .then((res) => {
                 // console.log(res);
             })
@@ -40,7 +40,7 @@ export default function PostEvent(props) {
     const isInterested = async (e) => {
         const eventId = e.target.getAttribute("eventId");
         console.log("On a l'ID event", eventId)
-        await axios.post(`http://localhost:8000/event/interested/${eventId}`, {}, { withCredentials: true })
+        await axios.post(process.env.REACT_APP_API_URL + `/event/interested/${eventId}`, {}, { withCredentials: true })
             .then((res) => {
                 console.log(res);
             })
@@ -71,7 +71,7 @@ export default function PostEvent(props) {
                 </div>
                 <div>
                     {/* <p>{props.picture}</p> */}
-                    <img className="post-event-image" alt="" src={`http://localhost:8000/Img/${props.picture}`}></img>
+                    <img className="post-event-image" alt="" src={process.env.REACT_APP_API_URL + `/Img/${props.picture}`}></img>
                 </div>
                 <div className="post-event-description">
                     {props.description}
