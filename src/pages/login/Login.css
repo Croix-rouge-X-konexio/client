@@ -56,6 +56,10 @@
     border-radius: 5px;
 }
 
+.logo-img {
+    background-color: blue;
+    width: 300px;
+}
 
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */

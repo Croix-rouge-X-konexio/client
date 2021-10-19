@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import "./Login.css"
-
+import logo from '../../images/logo.jpg'
 import axios from "axios"
 
 import './Login.css'
@@ -39,6 +39,9 @@ export default function Login() {
     return (
         <div className="login">
             <form onSubmit={submit}>
+                
+                <img className="logo-img" src={logo} alt="" />
+
                 <input className="login-input login-element" type="email" id="email" placeholder="Email" required />
                 <input className="login-input login-element" type="password" id="password" placeholder="Mot de passe" required />
 

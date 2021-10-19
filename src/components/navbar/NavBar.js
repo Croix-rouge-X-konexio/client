@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import axios from "axios";
 import './Navbar.css'
-
+import logo from '../../images/logo.png'
 export default function NavBar() {
 
     const [user, setUser] = useState([])
@@ -31,7 +31,9 @@ export default function NavBar() {
     return (
 
         <nav className="navbar">
-            <NavLink className="nav-logo" to="/home"><button>Croix Rouge</button></NavLink>
+            <NavLink className="nav-logo" to="/home"><button>
+                <img src={logo} alt="" />
+            </button></NavLink>
             <div className="nav-links">
                 <NavLink exact to="/home" activeClassName="active"><button className="nav-link"><i className="fas fa-home"></i></button></NavLink>
                 <NavLink exact to="/profile" activeClassName="active"><button className="nav-link"><i className="fas fa-user"></i></button></NavLink>
